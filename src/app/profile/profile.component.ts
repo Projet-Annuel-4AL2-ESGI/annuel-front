@@ -7,9 +7,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfileComponent implements OnInit {
 
-  constructor() { }
+  email: string | undefined;
+  password: string | undefined;
+  confirm_password: string | undefined;
+
+  constructor() {
+
+  }
 
   ngOnInit(): void {
+  }
+
+  register() {
+    // console.log(this.email, this.password);
+  }
+
+  login() {
+    console.log("gezevjd")
   }
 
 }
