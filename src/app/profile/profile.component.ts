@@ -23,6 +23,8 @@ export class ProfileComponent implements OnInit {
   register() {
     const user = new User(this.email, this.password)
     this.userService.createUser(user)
+    localStorage.setItem('currentUser', JSON.stringify(user))
+    window.location.reload()
   }
 
   login() {
