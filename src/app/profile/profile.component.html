@@ -1,6 +1,6 @@
 <mat-grid-list cols="1" rows="1" rowHeight="2:1">
   <mat-grid-tile>
-    <mat-card class="profile-card">
+    <mat-card *ngIf="currentUser == null" class="profile-card">
       <mat-card-header>
         <mat-card-title>Login/Register</mat-card-title>
         <mat-card-subtitle>Devnet</mat-card-subtitle>
@@ -50,5 +50,12 @@
       </mat-card-content>
 
     </mat-card>
+    <div *ngIf="currentUser != null">
+      <p>Connected !</p>
+      <br>
+      <button mat-raised-button color="warn" (click)="logout()">Logout</button>
+    </div>
   </mat-grid-tile>
 </mat-grid-list>
+
+

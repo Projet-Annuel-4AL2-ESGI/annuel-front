@@ -7,6 +7,7 @@ import { FormsModule } from "@angular/forms";
 import { MatIconModule } from "@angular/material/icon"
 import { MatGridListModule } from "@angular/material/grid-list";
 import { HttpClientModule } from '@angular/common/http';
+import {MatSnackBarModule} from "@angular/material/snack-bar";
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { HttpClientModule } from '@angular/common/http';
     FormsModule,
     MatIconModule,
     MatGridListModule,
-    HttpClientModule
+    HttpClientModule,
+    MatSnackBarModule
   ],
   exports: [
     MatCardModule,
@@ -30,7 +32,8 @@ import { HttpClientModule } from '@angular/common/http';
     FormsModule,
     MatIconModule,
     MatGridListModule,
-    HttpClientModule
+    HttpClientModule,
+    MatSnackBarModule
   ]
 })
 export class SharingModule {}

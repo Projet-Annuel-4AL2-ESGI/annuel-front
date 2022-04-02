@@ -3,3 +3,8 @@
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 html, body {margin: 0; height: 100%; overflow: hidden}
+
+
+.red-snackbar {
+  background: brown;
+}
