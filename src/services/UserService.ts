@@ -17,6 +17,7 @@ export class UserService {
   }
 
   public createUser(user: User) {
+    console.log(JSON.stringify(user))
     this.httpClient.post(`http://127.0.0.1:3000/user/`, JSON.parse(JSON.stringify(user))).subscribe(
       value => console.log(value),
       error => console.log(error)

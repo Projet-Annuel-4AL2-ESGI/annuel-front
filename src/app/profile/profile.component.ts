@@ -29,12 +29,12 @@ export class ProfileComponent implements OnInit {
 
   login() {
     const user = new User(this.email, this.password)
-    this.userService.findOneByMail(user.email).subscribe(
+    this.userService.findOneByMail(user.getEmail()).subscribe(
       value => {
-        if (value?.email === user.email && value?.password === user.password) {
+        if (value?.getEmail() === user.getEmail() && value?.getPassword() === user.getPassword()) {
           localStorage.setItem('currentUser', JSON.stringify(user))
           window.location.reload()
-        } else if (value?.email !== user.email) {
+        } else if (value?.getEmail() !== user.getEmail()) {
           this.openSnackBarError("Email provided is not associated with any existing user.")
         } else {
           this.openSnackBarError("Password is incorrect.")

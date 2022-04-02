@@ -1,21 +1,21 @@
 export class User {
-  constructor(private _email: string | undefined, private _password: string | undefined) {
+  constructor(private email: string | undefined, private password: string | undefined) {
   }
 
 
-  get email(): string | undefined {
-    return this._email;
+  getEmail(): string | undefined {
+    return this.email;
   }
 
-  set email(value: string | undefined) {
-    this._email = value;
+  setEmail(value: string | undefined) {
+    this.email = value;
   }
 
-  get password(): string | undefined {
-    return this._password;
+  getPassword(): string | undefined {
+    return this.password;
   }
 
-  set password(value: string | undefined) {
-    this._password = value;
+  setPassword(value: string | undefined) {
+    this.password = value;
   }
 }
