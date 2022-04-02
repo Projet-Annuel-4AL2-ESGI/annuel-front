@@ -6,6 +6,7 @@ import { MatButtonModule } from "@angular/material/button"
 import { FormsModule } from "@angular/forms";
 import { MatIconModule } from "@angular/material/icon"
 import {MatGridListModule} from "@angular/material/grid-list";
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import {MatGridListModule} from "@angular/material/grid-list";
     MatButtonModule,
     FormsModule,
     MatIconModule,
-    MatGridListModule
+    MatGridListModule,
+    HttpClientModule
   ],
   exports: [
     MatCardModule,
@@ -27,7 +29,8 @@ import {MatGridListModule} from "@angular/material/grid-list";
     MatButtonModule,
     FormsModule,
     MatIconModule,
-    MatGridListModule
+    MatGridListModule,
+    HttpClientModule
   ]
 })
 export class SharingModule {}

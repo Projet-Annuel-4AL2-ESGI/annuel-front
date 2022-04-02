@@ -1,5 +1,9 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import * as ace from 'ace-builds';
+import {CodeService} from "../../services/CodeService";
+import {HttpClient, HttpHandler} from "@angular/common/http";
+import {Router} from "@angular/router";
+import {Code} from "../../models/Code";
 @Component({
   selector: 'app-ide',
   templateUrl: './ide.component.html',
@@ -19,7 +23,7 @@ export class IdeComponent implements OnInit {
     { name: "Node JS", value: "node" }
   ]
 
-  constructor() { }
+  constructor(private codeService: CodeService) { }
 
   ngOnInit(): void {}
 
@@ -58,7 +62,7 @@ export class IdeComponent implements OnInit {
   executeCode() {
     const aceEditor = ace.edit(this.editor.nativeElement)
     this.output.nativeElement.innerText = aceEditor.session.getValue()
-    //TODO: GET OUPUT
+    this.codeService.postCode(new Code("type", "content"))
   }
 }
 
