@@ -3,7 +3,7 @@
   Select Language:
 
   <select id="languages" class="languages" [(ngModel)]="selectedLanguage" (ngModelChange)="changeLanguage()">
-    <option *ngFor="let l of languages" [value]="selectedLanguage">
+    <option *ngFor="let l of languages" [value]="l.value">
       {{l.name}}
     </option>
   </select>

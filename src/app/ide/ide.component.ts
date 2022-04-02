@@ -1,14 +1,14 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import * as ace from 'ace-builds';
 import {CodeService} from "../../services/CodeService";
-import {HttpClient, HttpHandler} from "@angular/common/http";
-import {Router} from "@angular/router";
 import {Code} from "../../models/Code";
+
 @Component({
   selector: 'app-ide',
   templateUrl: './ide.component.html',
   styleUrls: ['./ide.component.css']
 })
+
 export class IdeComponent implements OnInit {
 
   @ViewChild("editor") private editor!: ElementRef<HTMLElement>;
@@ -20,7 +20,7 @@ export class IdeComponent implements OnInit {
     { name: "C++", value: "cpp" },
     { name: "PHP", value: "php" },
     { name: "Python", value: "python" },
-    { name: "Node JS", value: "node" }
+    { name: "JS", value: "js" }
   ]
 
   constructor(private codeService: CodeService) { }
@@ -49,14 +49,19 @@ export class IdeComponent implements OnInit {
 
     console.log(this.selectedLanguage)
 
-    if(this.selectedLanguage == 'c' || this.selectedLanguage == 'cpp')
+    if (this.selectedLanguage == 'c' || this.selectedLanguage == 'cpp'){
       aceEditor.session.setMode("ace/mode/c_cpp");
-    else if(this.selectedLanguage == 'php')
+      aceEditor.session.setValue(`#include <stdio.h>\n int main() {\n// printf() displays the string inside quotation\nprintf(\"Hello, World!\");\nreturn 0;\n}`);
+    } else if(this.selectedLanguage == 'php') {
       aceEditor.session.setMode("ace/mode/php");
-    else if(this.selectedLanguage == 'python')
+      aceEditor.session.setValue("<?php echo 'Hello World!'; ?> ");
+    } else if(this.selectedLanguage == 'python') {
       aceEditor.session.setMode("ace/mode/python");
-    else if(this.selectedLanguage == 'node')
+      aceEditor.session.setValue("print 'Hello World!'");
+    } else if(this.selectedLanguage == 'js') {
       aceEditor.session.setMode("ace/mode/javascript");
+      aceEditor.session.setValue("console.log('Hello World');");
+    }
   }
 
   executeCode() {
