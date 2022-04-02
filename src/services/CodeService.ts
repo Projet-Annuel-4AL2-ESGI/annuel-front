@@ -19,8 +19,8 @@ export class CodeService {
     )
   }
 
-  public postCode(code: Code) {
-    return this.httpClient.post('http://127.0.0.1:3000/code/exec', {     "type": "py",     "content": "print'Hello World'" });
+  public postCode(code: Code) : Observable<string> {
+    return this.httpClient.post('http://127.0.0.1:3000/code/exec', JSON.parse(JSON.stringify(code))) as Observable<string>
   }
 }
 /*
