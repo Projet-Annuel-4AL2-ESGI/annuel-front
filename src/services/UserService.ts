@@ -16,12 +16,9 @@ export class UserService {
     return this.httpClient.get(`https://pa-back-armshb.herokuapp.com/user/`) as Observable<User>
   }
 
-  public createUser(user: User) {
+  public createUser(user: User) : Observable<User> {
     console.log(JSON.stringify(user))
-    this.httpClient.post(`https://pa-back-armshb.herokuapp.com/user/`, JSON.parse(JSON.stringify(user))).subscribe(
-      value => console.log(value),
-      error => console.log(error)
-    )
+    return this.httpClient.post(`https://pa-back-armshb.herokuapp.com/user/`, JSON.parse(JSON.stringify(user))) as Observable<User>
   }
 
   public findOne(id: number) : Observable<User | undefined> {

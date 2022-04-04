@@ -22,9 +22,16 @@ export class ProfileComponent implements OnInit {
 
   register() {
     const user = new User(this.email, this.password)
-    this.userService.createUser(user)
-    localStorage.setItem('currentUser', JSON.stringify(user))
-    window.location.reload()
+    this.userService.createUser(user).subscribe(
+      value => {
+        localStorage.setItem('currentUser', JSON.stringify(value))
+        window.location.reload()
+      },
+      error => {
+        this.openSnackBarError("There has been an error")
+      }
+    )
+
   }
 
   login() {
