@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { IdeComponent } from './ide.component';
+import {HttpClient, HttpClientModule} from '@angular/common/http';
+import {RouterModule} from "@angular/router";
+import {RouterTestingModule} from "@angular/router/testing";
 
 describe('IdeComponent', () => {
   let component: IdeComponent;
@@ -8,6 +10,7 @@ describe('IdeComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      imports: [ HttpClientModule, RouterModule, RouterTestingModule ],
       declarations: [ IdeComponent ]
     })
     .compileComponents();
