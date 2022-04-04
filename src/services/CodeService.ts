@@ -13,13 +13,13 @@ export class CodeService {
   }
 
   public getAllCodes() {
-    this.httpClient.get(`http://127.0.0.1:3000/code`).subscribe(
+    this.httpClient.get(`https://pa-back-armshb.herokuapp.com/code`).subscribe(
       value => console.log(value),
       error => console.log(error.error.text)
     )
   }
 
   public postCode(code: Code) : Observable<string> {
-    return this.httpClient.post('http://127.0.0.1:3000/code/exec', JSON.parse(JSON.stringify(code))) as Observable<string>
+    return this.httpClient.post('https://pa-back-armshb.herokuapp.com/code/exec', JSON.parse(JSON.stringify(code))) as Observable<string>
   }
 }

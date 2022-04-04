@@ -13,22 +13,22 @@ export class UserService {
   }
 
   public getAllUsers(): Observable<User> {
-    return this.httpClient.get(`http://127.0.0.1:3000/user/`) as Observable<User>
+    return this.httpClient.get(`https://pa-back-armshb.herokuapp.com/user/`) as Observable<User>
   }
 
   public createUser(user: User) {
     console.log(JSON.stringify(user))
-    this.httpClient.post(`http://127.0.0.1:3000/user/`, JSON.parse(JSON.stringify(user))).subscribe(
+    this.httpClient.post(`https://pa-back-armshb.herokuapp.com/user/`, JSON.parse(JSON.stringify(user))).subscribe(
       value => console.log(value),
       error => console.log(error)
     )
   }
 
   public findOne(id: number) : Observable<User | undefined> {
-    return this.httpClient.get(`http://127.0.0.1:3000/user/` + id) as Observable<User | undefined>
+    return this.httpClient.get(`https://pa-back-armshb.herokuapp.com/user/` + id) as Observable<User | undefined>
   }
 
   public findOneByMail(email: string | undefined) : Observable<User | undefined> {
-    return this.httpClient.get(`http://127.0.0.1:3000/user/mail/` + email) as Observable<User | undefined>
+    return this.httpClient.get(`https://pa-back-armshb.herokuapp.com/user/mail/` + email) as Observable<User | undefined>
   }
 }
