@@ -1,6 +1,6 @@
 {
   "name": "annuel-front",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "engines": { "node": "16.14.0", "npm": "8.5.5" },
   "scripts": {
     "ng": "ng",
