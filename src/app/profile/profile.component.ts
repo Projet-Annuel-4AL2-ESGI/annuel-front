@@ -14,6 +14,7 @@ export class ProfileComponent implements OnInit {
 
   email: string | undefined;
   password: string | undefined;
+  username: string | undefined;
   confirm_password: string | undefined;
 
   constructor(private userService: UserService, private _snackBar: MatSnackBar) {}
@@ -21,7 +22,7 @@ export class ProfileComponent implements OnInit {
   ngOnInit(): void {}
 
   register() {
-    const user = new User(this.email, this.password)
+    const user = new User(this.email, this.username, this.password)
     this.userService.createUser(user).subscribe(
       value => {
         localStorage.setItem('currentUser', JSON.stringify(value))
@@ -35,7 +36,7 @@ export class ProfileComponent implements OnInit {
   }
 
   login() {
-    const user = new User(this.email, this.password)
+    const user = new User(this.email, undefined, this.password)
     this.userService.findOneByMail(user.email).subscribe(
       value => {
         if (value?.email === user.email && value?.password === user.password) {
