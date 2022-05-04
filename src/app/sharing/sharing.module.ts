@@ -8,6 +8,9 @@ import { MatIconModule } from "@angular/material/icon"
 import { MatGridListModule } from "@angular/material/grid-list";
 import { HttpClientModule } from '@angular/common/http';
 import {MatSnackBarModule} from "@angular/material/snack-bar";
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatListModule} from '@angular/material/list';
 
 @NgModule({
   declarations: [
@@ -19,6 +22,9 @@ import {MatSnackBarModule} from "@angular/material/snack-bar";
     MatInputModule,
     MatButtonModule,
     FormsModule,
+    MatToolbarModule,
+    MatSidenavModule,
+    MatListModule,
     MatIconModule,
     MatGridListModule,
     HttpClientModule,
@@ -30,6 +36,9 @@ import {MatSnackBarModule} from "@angular/material/snack-bar";
     MatInputModule,
     MatButtonModule,
     FormsModule,
+    MatToolbarModule,
+    MatSidenavModule,
+    MatListModule,
     MatIconModule,
     MatGridListModule,
     HttpClientModule,
