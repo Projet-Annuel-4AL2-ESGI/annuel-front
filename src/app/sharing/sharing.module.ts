@@ -5,6 +5,7 @@ import { MatInputModule } from "@angular/material/input"
 import { MatButtonModule } from "@angular/material/button"
 import { FormsModule } from "@angular/forms";
 import { MatIconModule } from "@angular/material/icon"
+import { AngularSvgIconModule } from 'angular-svg-icon';
 import { MatGridListModule } from "@angular/material/grid-list";
 import { HttpClientModule } from '@angular/common/http';
 import {MatSnackBarModule} from "@angular/material/snack-bar";
@@ -26,6 +27,7 @@ import {MatListModule} from '@angular/material/list';
     MatSidenavModule,
     MatListModule,
     MatIconModule,
+    AngularSvgIconModule,
     MatGridListModule,
     HttpClientModule,
     MatSnackBarModule
@@ -40,6 +42,7 @@ import {MatListModule} from '@angular/material/list';
     MatSidenavModule,
     MatListModule,
     MatIconModule,
+    AngularSvgIconModule,
     MatGridListModule,
     HttpClientModule,
     MatSnackBarModule
