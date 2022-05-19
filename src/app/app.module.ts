@@ -8,13 +8,15 @@ import { IdeComponent } from './ide/ide.component';
 import { FormsModule } from "@angular/forms";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharingModule } from "./sharing/sharing.module";
+import { HomeCenterComponent } from './home/home-center/home-center.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     ProfileComponent,
-    IdeComponent
+    IdeComponent,
+    HomeCenterComponent
   ],
   imports: [
     BrowserModule,

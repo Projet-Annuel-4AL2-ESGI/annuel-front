@@ -8,10 +8,14 @@ import { MatIconModule } from "@angular/material/icon"
 import { MatGridListModule } from "@angular/material/grid-list";
 import { HttpClientModule } from '@angular/common/http';
 import {MatSnackBarModule} from "@angular/material/snack-bar";
+import { MenuComponent } from './menu/menu/menu.component';
+import {MatToolbarModule} from "@angular/material/toolbar";
 
 @NgModule({
   declarations: [
 
+
+    MenuComponent
   ],
   imports: [
     MatCardModule,
@@ -22,7 +26,8 @@ import {MatSnackBarModule} from "@angular/material/snack-bar";
     MatIconModule,
     MatGridListModule,
     HttpClientModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatToolbarModule
   ],
   exports: [
     MatCardModule,
@@ -33,7 +38,8 @@ import {MatSnackBarModule} from "@angular/material/snack-bar";
     MatIconModule,
     MatGridListModule,
     HttpClientModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MenuComponent
   ]
 })
 export class SharingModule {}
