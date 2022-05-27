@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {User} from "../../models/User";
 import {UserService} from "../../services/UserService";
 import {MatSnackBar} from "@angular/material/snack-bar";
@@ -17,9 +17,11 @@ export class ProfileComponent implements OnInit {
   username: string | undefined;
   confirm_password: string | undefined;
 
-  constructor(private userService: UserService, private _snackBar: MatSnackBar) {}
+  constructor(private userService: UserService, private _snackBar: MatSnackBar) {
+  }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+  }
 
   register() {
     const user = new User(this.email, this.username, this.password)

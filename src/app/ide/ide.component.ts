@@ -11,21 +11,22 @@ import {Code} from "../../models/Code";
 
 export class IdeComponent implements OnInit {
 
-  @ViewChild("editor") private editor!: ElementRef<HTMLElement>;
-  @ViewChild("output") private output!: ElementRef<HTMLElement>;
   selectedLanguage: string = "py";
-
   languages = [
     //{ name: "C", value: "c" },
     //{ name: "C++", value: "cpp" },
     //{ name: "PHP", value: "php" },
-    { name: "Python", value: "py" },
-    { name: "JS", value: "js" }
+    {name: "Python", value: "py"},
+    {name: "JS", value: "js"}
   ]
+  @ViewChild("editor") private editor!: ElementRef<HTMLElement>;
+  @ViewChild("output") private output!: ElementRef<HTMLElement>;
 
-  constructor(private codeService: CodeService) { }
+  constructor(private codeService: CodeService) {
+  }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+  }
 
   ngAfterViewInit(): void {
     //TODO: CHANGE STYLE
@@ -42,16 +43,16 @@ export class IdeComponent implements OnInit {
 
     console.log(this.selectedLanguage)
 
-    if (this.selectedLanguage == 'c' || this.selectedLanguage == 'cpp'){
+    if (this.selectedLanguage == 'c' || this.selectedLanguage == 'cpp') {
       aceEditor.session.setMode("ace/mode/c_cpp");
       aceEditor.session.setValue(`#include <stdio.h>\n int main() {\n// printf() displays the string inside quotation\nprintf(\"Hello, World!\");\nreturn 0;\n}`);
-    } else if(this.selectedLanguage == 'php') {
+    } else if (this.selectedLanguage == 'php') {
       aceEditor.session.setMode("ace/mode/php");
       aceEditor.session.setValue("<?php echo 'Hello World!'; ?> ");
-    } else if(this.selectedLanguage == 'py') {
+    } else if (this.selectedLanguage == 'py') {
       aceEditor.session.setMode("ace/mode/python");
       aceEditor.session.setValue("print ('Hello World!')");
-    } else if(this.selectedLanguage == 'js') {
+    } else if (this.selectedLanguage == 'js') {
       aceEditor.session.setMode("ace/mode/javascript");
       aceEditor.session.setValue("console.log('Hello World');");
     }

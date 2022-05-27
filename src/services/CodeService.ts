@@ -1,8 +1,7 @@
-import {EventEmitter, Injectable} from '@angular/core';
-import {BehaviorSubject, Observable} from 'rxjs';
-import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
+import {Injectable} from '@angular/core';
+import {Observable} from 'rxjs';
+import {HttpClient} from '@angular/common/http';
 import {Router} from '@angular/router';
-import {map} from 'rxjs/operators';
 import {Code} from "../models/Code";
 
 @Injectable({
@@ -19,7 +18,7 @@ export class CodeService {
     )
   }
 
-  public postCode(code: Code) : Observable<string> {
+  public postCode(code: Code): Observable<string> {
     return this.httpClient.post('http://127.0.0.1:3000/code/exec', JSON.parse(JSON.stringify(code))) as Observable<string>
   }
 }

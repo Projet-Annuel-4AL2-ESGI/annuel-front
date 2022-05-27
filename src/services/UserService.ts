@@ -2,7 +2,6 @@ import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 import {Router} from '@angular/router';
-import {Code} from "../models/Code";
 import {User} from "../models/User";
 
 @Injectable({
@@ -16,16 +15,16 @@ export class UserService {
     return this.httpClient.get(`http://127.0.0.1:3000/user/`) as Observable<User>
   }
 
-  public createUser(user: User) : Observable<User> {
+  public createUser(user: User): Observable<User> {
     console.log(JSON.stringify(user))
     return this.httpClient.post(`http://127.0.0.1:3000/user/`, JSON.parse(JSON.stringify(user))) as Observable<User>
   }
 
-  public findOne(id: number) : Observable<User | undefined> {
+  public findOne(id: number): Observable<User | undefined> {
     return this.httpClient.get(`http://127.0.0.1:3000/user/` + id) as Observable<User | undefined>
   }
 
-  public findOneByMail(email: string | undefined) : Observable<User | undefined> {
+  public findOneByMail(email: string | undefined): Observable<User | undefined> {
     return this.httpClient.get(`http://127.0.0.1:3000/user/mail/` + email) as Observable<User | undefined>
   }
 }

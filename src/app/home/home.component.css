@@ -1,18 +1,18 @@
-.home{
+.home {
   display: grid;
   grid-template-columns: 350px 1fr 350px;
 
 }
 
-.home__left{
+.home__left {
 }
 
-.home__center{
+.home__center {
   padding-top: 10px;
   border-left: 1px lightgray solid;
   border-right: 1px lightgray solid;
 
 }
 
-.home__right{
+.home__right {
 }

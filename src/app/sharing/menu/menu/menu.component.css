@@ -2,15 +2,15 @@
   flex: 1 1 auto;
 }
 
-.menu__title{
+.menu__title {
   font-size: 20px;
 }
 
-.menu__item{
+.menu__item {
 
 }
 
-.menu{
+.menu {
   display: flex;
   gap: 10px;
 }

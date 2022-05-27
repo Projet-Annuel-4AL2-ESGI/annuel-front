@@ -1,39 +1,50 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
-html, body {margin: 0; height: 100%; overflow: hidden}
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+html, body {
+  margin: 0;
+  height: 100%;
+  overflow: hidden
+}
 
 
 .red-snackbar {
   background: brown;
 }
 
-.primary_theme_color{
+.primary_theme_color {
   background-color: #E7AC67;
 }
 
-a{
+a {
   text-decoration: none;
   color: black;
   font-size: 14px;
 }
 
-.main{
+.main {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
 }
 
-body{
+body {
   overflow: auto;
 }
 
-.content{
+.content {
   flex: 3;
 }
 
-*{
+* {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
