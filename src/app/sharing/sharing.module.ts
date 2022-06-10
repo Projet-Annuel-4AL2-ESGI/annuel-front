@@ -10,6 +10,7 @@ import {HttpClientModule} from '@angular/common/http';
 import {MatSnackBarModule} from "@angular/material/snack-bar";
 import {MenuComponent} from './menu/menu/menu.component';
 import {MatToolbarModule} from "@angular/material/toolbar";
+import {CommonModule} from "@angular/common";
 
 @NgModule({
   declarations: [
@@ -17,18 +18,19 @@ import {MatToolbarModule} from "@angular/material/toolbar";
 
     MenuComponent
   ],
-  imports: [
-    MatCardModule,
-    MatTabsModule,
-    MatInputModule,
-    MatButtonModule,
-    FormsModule,
-    MatIconModule,
-    MatGridListModule,
-    HttpClientModule,
-    MatSnackBarModule,
-    MatToolbarModule
-  ],
+    imports: [
+        MatCardModule,
+        MatTabsModule,
+        MatInputModule,
+        MatButtonModule,
+        FormsModule,
+        MatIconModule,
+        MatGridListModule,
+        HttpClientModule,
+        MatSnackBarModule,
+        MatToolbarModule,
+        CommonModule
+    ],
   exports: [
     MatCardModule,
     MatTabsModule,

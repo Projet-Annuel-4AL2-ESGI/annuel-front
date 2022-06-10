@@ -45,12 +45,12 @@ export class ProfileComponent implements OnInit {
       return;
     }
     this.userService.findOneByMail(user.email).subscribe(
-      value => {
+      async value => {
         if (value == undefined || value.password == undefined) {
           this.openSnackBarError("There was an error fetching data.");
           return;
         }
-        if (value.email === user.email && bcrypt.compare(user.password!, value.password)) {
+        if (value.email === user.email && await bcrypt.compare(user.password!, value.password)) {
           localStorage.setItem('currentUser', JSON.stringify(user))
           window.location.reload()
         } else if (value.email !== user.email) {
