@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {User} from "../../models/User";
 import {UserService} from "../../services/UserService";
 import {MatSnackBar} from "@angular/material/snack-bar";
+import * as bcrypt from 'bcryptjs';
 
 @Component({
   selector: 'app-profile',
@@ -39,12 +40,20 @@ export class ProfileComponent implements OnInit {
 
   login() {
     const user = new User(this.email, undefined, this.password)
+    if (user == undefined || user.password == undefined) {
+      this.openSnackBarError("Provide a password.");
+      return;
+    }
     this.userService.findOneByMail(user.email).subscribe(
       value => {
-        if (value?.email === user.email && value?.password === user.password) {
+        if (value == undefined || value.password == undefined) {
+          this.openSnackBarError("There was an error fetching data.");
+          return;
+        }
+        if (value.email === user.email && bcrypt.compare(user.password!, value.password)) {
           localStorage.setItem('currentUser', JSON.stringify(user))
           window.location.reload()
-        } else if (value?.email !== user.email) {
+        } else if (value.email !== user.email) {
           this.openSnackBarError("Email provided is not associated with any existing user.")
         } else {
           this.openSnackBarError("Password is incorrect.")
