@@ -5,12 +5,12 @@
   gap: 10px;
 }
 
-.example-card {
+.card {
   width: 500px;
   box-shadow: rgba(60, 64, 67, 0.3) 0 1px 2px 0, rgba(60, 64, 67, 0.15) 0 1px 3px 1px;
 }
 
-.example-header-image {
+.header-image {
   background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
   background-size: cover;
 }

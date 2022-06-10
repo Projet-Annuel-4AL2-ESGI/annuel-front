@@ -1,26 +1,19 @@
 <div class="home-center">
   <div *ngFor="let item of json">
-    <mat-card *ngIf="item.type === 'exo' " class="example-card">
-      <mat-card-header>
-        <div class="example-header-image" mat-card-avatar></div>
+    <mat-card class="card">
+      <mat-card-header style="padding-bottom: 10px">
+        <div class="header-image" mat-card-avatar></div>
         <mat-card-title>{{item.user.name}}</mat-card-title>
         <mat-card-subtitle>{{item.user.lastname}}</mat-card-subtitle>
       </mat-card-header>
-      <img alt="Photo of a Shiba Inu" mat-card-image src="{{item.image}}">
+      <div *ngIf="item.image != null">
+        <img alt="Photo of a Shiba Inu" mat-card-image src="{{item.image}}">
+      </div>
       <mat-card-content>
         <p>
           {{item.text}}
         </p>
       </mat-card-content>
-      <mat-card-actions align="end">
-        <button mat-button>LIKE</button>
-        <button mat-button>SHARE</button>
-      </mat-card-actions>
-    </mat-card>
-
-    <mat-card *ngIf="item.type === 'notif'" class="example-card">
-      <mat-card-title>{{item.user.name}}</mat-card-title>
-      <mat-card-subtitle>{{item.text}}</mat-card-subtitle>
       <mat-card-actions align="end">
         <button mat-button>LIKE</button>
         <button mat-button>SHARE</button>
