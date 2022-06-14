@@ -9,6 +9,7 @@ import {FormsModule} from "@angular/forms";
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {SharingModule} from "./sharing/sharing.module";
 import {HomeCenterComponent} from './home/home-center/home-center.component';
+import { HomeLeftComponent } from './home/home-left/home-left.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import {HomeCenterComponent} from './home/home-center/home-center.component';
     HomeComponent,
     ProfileComponent,
     IdeComponent,
-    HomeCenterComponent
+    HomeCenterComponent,
+    HomeLeftComponent
   ],
   imports: [
     BrowserModule,
