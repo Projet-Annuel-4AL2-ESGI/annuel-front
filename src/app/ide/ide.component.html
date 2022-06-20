@@ -1,7 +1,7 @@
 <div class="control-panel">
   Select Language:
 
-  <select (ngModelChange)="changeLanguage()" [(ngModel)]="selectedLanguage" class="languages" id="languages">
+  <select (ngModelChange)="changeLanguage($event)" [(ngModel)]="selectedLanguage" class="languages" id="languages">
     <option *ngFor="let l of languages" [value]="l.value">
       {{l.name}}
     </option>

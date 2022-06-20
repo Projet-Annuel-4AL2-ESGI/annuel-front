@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {UserService} from "../../../services/UserService";
+import {User} from "../../../models/User";
 
 @Component({
   selector: 'app-home-left',
@@ -7,26 +9,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeLeftComponent implements OnInit {
 
-  constructor() { }
+  users: any;
+
+  currentUser = localStorage.getItem('currentUser');
+
+  constructor(private userService: UserService) { }
 
   ngOnInit(): void {
+    this.userService.getAllUsers().subscribe(user =>{
+      this.users = user;
+    });
   }
 
-  json = [
-    {
-      "user": {"name": "henri", "lastname": "bg"},
-    },
-    {
-      "user": {"name": "adri", "lastname": "charo"},
-
-    },
-    {
-      "user": {"name": "cheplus", "lastname": "bg"},
-
-    },
-    {
-      "user": {"name": "zouk", "lastname": "bg"},
-    },
-  ]
+  ngAfterViewInit(): void {
+  }
 
 }

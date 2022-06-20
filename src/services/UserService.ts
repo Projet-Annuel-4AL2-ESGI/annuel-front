@@ -11,8 +11,8 @@ export class UserService {
   constructor(private httpClient: HttpClient, private router: Router) {
   }
 
-  public getAllUsers(): Observable<User> {
-    return this.httpClient.get(`http://127.0.0.1:3000/user/`) as Observable<User>
+  public getAllUsers(): Observable<User[]> {
+    return this.httpClient.get(`http://127.0.0.1:3000/user/`) as Observable<User[]>
   }
 
   public createUser(user: User): Observable<User> {

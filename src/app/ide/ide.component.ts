@@ -35,12 +35,13 @@ export class IdeComponent implements OnInit {
 
     ace.edit(this.editor.nativeElement).setTheme('ace/theme/monokai');
 
-    this.changeLanguage()
+    this.changeLanguage("py");
   }
 
-  changeLanguage() {
+  changeLanguage(event: any) {
     const aceEditor = ace.edit(this.editor.nativeElement);
 
+    this.selectedLanguage = event;
     console.log(this.selectedLanguage)
 
     if (this.selectedLanguage == 'c' || this.selectedLanguage == 'cpp') {

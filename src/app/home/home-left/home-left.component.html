@@ -1,10 +1,9 @@
 <div class="home-left">
-  <div *ngFor="let item of json">
+  <div *ngFor="let item of users">
     <mat-card class="card-home-left">
-      <mat-card-header style="padding-bottom: 10px">
+      <mat-card-header>
         <div class="header-image" mat-card-avatar></div>
-        <mat-card-title>{{item.user.name}}</mat-card-title>
-        <mat-card-subtitle>{{item.user.lastname}}</mat-card-subtitle>
+        <mat-card-title style="margin-top: 10px">{{item.username}}</mat-card-title>
       </mat-card-header>
         <button mat-button>Follow</button>
     </mat-card>

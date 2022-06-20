@@ -51,7 +51,7 @@ export class ProfileComponent implements OnInit {
           return;
         }
         if (value.email === user.email && await bcrypt.compare(user.password!, value.password)) {
-          localStorage.setItem('currentUser', JSON.stringify(user))
+          localStorage.setItem('currentUser', JSON.stringify(value))
           window.location.reload()
         } else if (value.email !== user.email) {
           this.openSnackBarError("Email provided is not associated with any existing user.")
