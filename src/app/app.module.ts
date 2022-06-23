@@ -10,6 +10,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {SharingModule} from "./sharing/sharing.module";
 import {HomeCenterComponent} from './home/home-center/home-center.component';
 import { HomeLeftComponent } from './home/home-left/home-left.component';
+import {AuthGuard} from "./auth.guard";
 
 @NgModule({
   declarations: [
@@ -27,7 +28,7 @@ import { HomeLeftComponent } from './home/home-left/home-left.component';
     BrowserAnimationsModule,
     SharingModule
   ],
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule {

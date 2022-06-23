@@ -27,7 +27,7 @@ export class ProfileComponent implements OnInit {
     if(this.currentUser != null) {
       this.decoded = jwt_decode(this.currentUser);
     }
-    console.log(this.decoded.id);
+    //console.log(this.decoded.id);
   }
 
   register() {
