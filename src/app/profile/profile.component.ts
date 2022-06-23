@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {User} from "../../models/User";
 import {UserService} from "../../services/UserService";
 import {MatSnackBar} from "@angular/material/snack-bar";
+import jwt_decode from "jwt-decode"
 import * as bcrypt from 'bcryptjs';
 
 @Component({
@@ -12,6 +13,7 @@ import * as bcrypt from 'bcryptjs';
 export class ProfileComponent implements OnInit {
 
   currentUser = localStorage.getItem('currentUser')
+  decoded: any;
 
   email: string | undefined;
   password: string | undefined;
@@ -22,6 +24,10 @@ export class ProfileComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if(this.currentUser != null) {
+      this.decoded = jwt_decode(this.currentUser);
+    }
+    console.log(this.decoded.id);
   }
 
   register() {
@@ -44,20 +50,14 @@ export class ProfileComponent implements OnInit {
       this.openSnackBarError("Provide a password.");
       return;
     }
-    this.userService.findOneByMail(user.email).subscribe(
+    this.userService.login(user.email, user.password).subscribe(
       async value => {
-        if (value == undefined || value.password == undefined) {
+        if (value == undefined) {
           this.openSnackBarError("There was an error fetching data.");
           return;
         }
-        if (value.email === user.email && await bcrypt.compare(user.password!, value.password)) {
           localStorage.setItem('currentUser', JSON.stringify(value))
           window.location.reload()
-        } else if (value.email !== user.email) {
-          this.openSnackBarError("Email provided is not associated with any existing user.")
-        } else {
-          this.openSnackBarError("Password is incorrect.")
-        }
       },
       error => {
         console.log(error)

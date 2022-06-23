@@ -10,9 +10,6 @@ import {User} from "../../../models/User";
 export class HomeLeftComponent implements OnInit {
 
   users: any;
-
-  currentUser = localStorage.getItem('currentUser');
-
   constructor(private userService: UserService) { }
 
   ngOnInit(): void {
