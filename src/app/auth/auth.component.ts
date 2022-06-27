@@ -1,19 +1,18 @@
-import {Component, OnInit} from '@angular/core';
-import {User} from "../../models/User";
+import { Component, OnInit } from '@angular/core';
 import {UserService} from "../../services/UserService";
 import {MatSnackBar} from "@angular/material/snack-bar";
-import jwt_decode from "jwt-decode"
-import * as bcrypt from 'bcryptjs';
+import jwt_decode from "jwt-decode";
+import {User} from "../../models/User";
+import {Router} from "@angular/router";
 
 @Component({
-  selector: 'app-profile',
-  templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.css']
+  selector: 'app-auth',
+  templateUrl: './auth.component.html',
+  styleUrls: ['./auth.component.css']
 })
-export class ProfileComponent implements OnInit {
+export class AuthComponent implements OnInit {
 
   currentUser = localStorage.getItem('currentUser')
-  paresdJSON: any;
   decoded: any;
 
   email: string | undefined;
@@ -21,16 +20,12 @@ export class ProfileComponent implements OnInit {
   username: string | undefined;
   confirm_password: string | undefined;
 
-  constructor(private userService: UserService, private _snackBar: MatSnackBar) {
+  constructor(private userService: UserService, private _snackBar: MatSnackBar, private router: Router) {
   }
 
   ngOnInit(): void {
     if(this.currentUser != null) {
       this.decoded = jwt_decode(this.currentUser);
-      this.paresdJSON = JSON.parse(this.currentUser);
-      console.log(this.paresdJSON["access_token"]);
-      console.log(this.decoded);
-      console.log(this.currentUser);
     }
     //console.log(this.decoded.id);
   }
@@ -61,8 +56,8 @@ export class ProfileComponent implements OnInit {
           this.openSnackBarError("There was an error fetching data.");
           return;
         }
-          localStorage.setItem('currentUser', JSON.stringify(value))
-          window.location.reload()
+        localStorage.setItem('currentUser', JSON.stringify(value))
+        await this.router.navigate(['/profile']);
       },
       error => {
         console.log(error)

@@ -11,6 +11,7 @@ import {SharingModule} from "./sharing/sharing.module";
 import {HomeCenterComponent} from './home/home-center/home-center.component';
 import { HomeLeftComponent } from './home/home-left/home-left.component';
 import {AuthGuard} from "./auth.guard";
+import { AuthComponent } from './auth/auth.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import {AuthGuard} from "./auth.guard";
     ProfileComponent,
     IdeComponent,
     HomeCenterComponent,
-    HomeLeftComponent
+    HomeLeftComponent,
+    AuthComponent
   ],
   imports: [
     BrowserModule,
