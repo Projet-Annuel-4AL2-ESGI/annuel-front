@@ -5,5 +5,6 @@
     <a href="/ide">Sandbox</a>
     <a *ngIf='isLogedIn == null' href="/profile">Login</a>
     <a *ngIf='isLogedIn' href="/profile">Profile</a>
+    <button *ngIf="isLogedIn != null" (click)="logout()" color="warn" mat-raised-button>Logout</button>
   </mat-toolbar>
 </p>

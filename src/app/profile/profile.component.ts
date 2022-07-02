@@ -16,65 +16,11 @@ export class ProfileComponent implements OnInit {
   paresdJSON: any;
   decoded: any;
 
-  email: string | undefined;
-  password: string | undefined;
-  username: string | undefined;
-  confirm_password: string | undefined;
-
   constructor(private userService: UserService, private _snackBar: MatSnackBar) {
   }
 
   ngOnInit(): void {
-    if(this.currentUser != null) {
-      this.decoded = jwt_decode(this.currentUser);
-      this.paresdJSON = JSON.parse(this.currentUser);
-      console.log(this.paresdJSON["access_token"]);
-      console.log(this.decoded);
-      console.log(this.currentUser);
-    }
-    //console.log(this.decoded.id);
   }
-
-  register() {
-    const user = new User(this.email, this.username, this.password)
-    this.userService.createUser(user).subscribe(
-      value => {
-        localStorage.setItem('currentUser', JSON.stringify(value))
-        window.location.reload()
-      },
-      error => {
-        this.openSnackBarError("There has been an error")
-      }
-    )
-
-  }
-
-  login() {
-    const user = new User(this.email, undefined, this.password)
-    if (user == undefined || user.password == undefined) {
-      this.openSnackBarError("Provide a password.");
-      return;
-    }
-    this.userService.login(user.email, user.password).subscribe(
-      async value => {
-        if (value == undefined) {
-          this.openSnackBarError("There was an error fetching data.");
-          return;
-        }
-          localStorage.setItem('currentUser', JSON.stringify(value))
-          window.location.reload()
-      },
-      error => {
-        console.log(error)
-      }
-    )
-  }
-
-  logout() {
-    localStorage.removeItem('currentUser')
-    window.location.reload()
-  }
-
   openSnackBarError(message: string) {
     this._snackBar.open(message, '', {
       duration: 2000,

@@ -16,4 +16,9 @@ export class MenuComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  logout() {
+    localStorage.removeItem('currentUser')
+    window.location.reload()
+  }
+
 }

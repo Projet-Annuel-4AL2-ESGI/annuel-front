@@ -57,7 +57,7 @@ export class AuthComponent implements OnInit {
           return;
         }
         localStorage.setItem('currentUser', JSON.stringify(value))
-        await this.router.navigate(['/profile']);
+        await this.router.navigate(['/profile']).then(() => window.location.reload());
       },
       error => {
         console.log(error)
