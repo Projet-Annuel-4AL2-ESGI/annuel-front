@@ -17,6 +17,8 @@ export class AuthComponent implements OnInit {
 
   email: string | undefined;
   password: string | undefined;
+  registrationEmail: string | undefined;
+  registrationPassword: string | undefined;
   username: string | undefined;
   confirm_password: string | undefined;
 
@@ -31,7 +33,7 @@ export class AuthComponent implements OnInit {
   }
 
   register() {
-    const user = new User(this.email, this.username, this.password)
+    const user = new User(this.registrationEmail, this.username, this.registrationPassword)
     this.userService.createUser(user).subscribe(
       value => {
         localStorage.setItem('currentUser', JSON.stringify(value))
