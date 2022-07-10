@@ -1,5 +1,5 @@
 <div class="home-center">
-  <div *ngFor="let item of json">
+  <div *ngFor="let item of posts">
     <mat-card class="card-home-center">
       <div *ngIf="item.type == 'exo'">
         <mat-card-header style="padding-bottom: 20px">
@@ -7,12 +7,16 @@
           <mat-card-title style="margin-top: 7px">{{item.title}}</mat-card-title>
         </mat-card-header>
       </div>
-
       <div *ngIf="item.type == 'notif'">
         <mat-card-header style="padding-bottom: 10px">
-          <div class="header-image" mat-card-avatar></div>
-          <mat-card-title>{{item.user.name}}</mat-card-title>
-          <mat-card-subtitle>{{item.user.lastname}}</mat-card-subtitle>
+          <div *ngIf="item.userImage == null" mat-card-avatar>
+            <div class="header-image" mat-card-avatar></div>
+          </div>
+          <div *ngIf="item.userImage != null" mat-card-avatar>
+            <img [src]="sanitize(item.userImage)">
+          </div>
+          <mat-card-title>{{item.userName}}</mat-card-title>
+          <mat-card-subtitle>DONE</mat-card-subtitle>
         </mat-card-header>
       </div>
 
@@ -22,13 +26,12 @@
 
       <mat-card-content>
         <p>
-          {{item.text}}
+          {{item.description}}
         </p>
       </mat-card-content>
 
       <mat-card-actions align="end">
         <button mat-button>LIKE</button>
-        <button mat-button>SHARE</button>
       </mat-card-actions>
 
     </mat-card>
