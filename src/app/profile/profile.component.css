@@ -42,6 +42,13 @@
   margin-top: -90px;
 }
 
+img.rounded {
+  object-fit: cover;
+  border-radius: 50%;
+  height: 128px;
+  width: 128px;
+}
+
 .little-profile .pro-img img {
   width: 128px;
   height: 128px;
@@ -61,5 +68,9 @@ h6 {
   color: #455a64;
   font-family: "Poppins", sans-serif;
   font-weight: 400
+}
+
+.image-upload>input {
+  display: none;
 }
 

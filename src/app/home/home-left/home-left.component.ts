@@ -4,6 +4,7 @@ import jwt_decode from "jwt-decode";
 import {Follow} from "../../../models/Follow";
 import {FollowService} from "../../../services/FollowService";
 import {UserFollow} from "../../../models/UserFollow";
+import {DomSanitizer} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-home-left',
@@ -16,7 +17,7 @@ export class HomeLeftComponent implements OnInit {
   decoded: any
   follows: UserFollow[] = []
   users: any;
-  constructor(private userService: UserService, private followService: FollowService) { }
+  constructor(private userService: UserService, private followService: FollowService, private _sanitizer: DomSanitizer) { }
 
   ngOnInit(): void {
     if(this.currentUser != null){
@@ -55,8 +56,8 @@ export class HomeLeftComponent implements OnInit {
     console.log(this.follows);
   }
 
-  /*public compareFollows(users: any, followers: follows) {
-
-  }*/
+  sanitize(image: string): any {
+    return this._sanitizer.bypassSecurityTrustUrl('data:image/jpeg;base64,' + image);
+  }
 
 }

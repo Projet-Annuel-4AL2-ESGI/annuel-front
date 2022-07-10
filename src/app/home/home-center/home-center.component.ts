@@ -46,7 +46,6 @@ export class HomeCenterComponent implements OnInit {
 
     postService.getPosts().subscribe( posts => {
       this.posts = posts;
-      console.log(this.posts);
     } );
   }
 

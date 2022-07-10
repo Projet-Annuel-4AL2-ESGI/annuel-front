@@ -5,6 +5,7 @@ import {Router} from '@angular/router';
 import {User} from "../models/User";
 import {UserFollow} from "../models/UserFollow";
 import {UserProfile} from "../models/UserProfile";
+import {UserImage} from "../models/UserImage";
 
 @Injectable({
   providedIn: 'root'
@@ -40,5 +41,8 @@ export class UserService {
   }
   public getNewFollows(id: number): Observable<UserFollow[]> {
     return this.httpClient.get('http://127.0.0.1:3000/user/follow/' + id) as Observable<UserFollow[]>
+  }
+  public updateImage(id: number, updateImage: UserImage): Observable<string> {
+    return this.httpClient.post('http://localhost:3000/user/upload/'+ id, JSON.parse(JSON.stringify(updateImage))) as Observable<string>
   }
 }
