@@ -8,7 +8,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "build:prod": "ng build --prod && mv dist/APP-NAME _static",
+    "build:prod": "ng build --prod && mv dist/annuel-front _static",
     "test:prod": "ng test --browsers=ChromeHeadless --watch=false --code-coverage",
     "heroku-postbuild": "ng build --prod"
   },
