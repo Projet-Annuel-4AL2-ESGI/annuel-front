@@ -35,9 +35,9 @@ export class AuthComponent implements OnInit {
   register() {
     const user = new User(this.registrationEmail, this.username, this.registrationPassword)
     this.userService.createUser(user).subscribe(
-      value => {
+      async value => {
         localStorage.setItem('currentUser', JSON.stringify(value))
-        window.location.reload()
+        await this.router.navigate(['/']).then(() => window.location.reload());
       },
       error => {
         this.openSnackBarError("There has been an error")

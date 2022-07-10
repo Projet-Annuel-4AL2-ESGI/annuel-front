@@ -3,6 +3,8 @@ import {Observable} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 import {Router} from '@angular/router';
 import {User} from "../models/User";
+import {UserFollow} from "../models/UserFollow";
+import {UserProfile} from "../models/UserProfile";
 
 @Injectable({
   providedIn: 'root'
@@ -28,8 +30,15 @@ export class UserService {
     return this.httpClient.get(`http://127.0.0.1:3000/user/mail/` + email) as Observable<User | undefined>
   }
 
+  public findOneProfile(id: number): Observable<UserProfile> {
+    return this.httpClient.get(`http://localhost:3000/user/profile/`+ id) as Observable<UserProfile>
+  }
+
   public login(username: string | undefined, password: string): Observable<any> {
     return this.httpClient.post(`http://127.0.0.1:3000/auth/login`,
                           { username : username, password: password}) as Observable<any>
+  }
+  public getNewFollows(id: number): Observable<UserFollow[]> {
+    return this.httpClient.get('http://127.0.0.1:3000/user/follow/' + id) as Observable<UserFollow[]>
   }
 }

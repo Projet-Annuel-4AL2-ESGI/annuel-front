@@ -7,6 +7,7 @@
           <mat-card-title style="margin-top: 7px">{{item.title}}</mat-card-title>
         </mat-card-header>
       </div>
+
       <div *ngIf="item.type == 'notif'">
         <mat-card-header style="padding-bottom: 10px">
           <div class="header-image" mat-card-avatar></div>
@@ -14,18 +15,22 @@
           <mat-card-subtitle>{{item.user.lastname}}</mat-card-subtitle>
         </mat-card-header>
       </div>
+
       <div *ngIf="item.image != null">
         <img alt="Photo of a Shiba Inu" mat-card-image [src]="sanitize(item.image)">
       </div>
+
       <mat-card-content>
         <p>
           {{item.text}}
         </p>
       </mat-card-content>
+
       <mat-card-actions align="end">
         <button mat-button>LIKE</button>
         <button mat-button>SHARE</button>
       </mat-card-actions>
+
     </mat-card>
   </div>
 </div>

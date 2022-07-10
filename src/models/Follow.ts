@@ -1,4 +1,4 @@
 export class Follow {
-  constructor(public id: number, public username: string) {
+  constructor(public id: number | null, public follower: number, public following: number) {
   }
 }

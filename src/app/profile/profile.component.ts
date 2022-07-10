@@ -4,6 +4,7 @@ import {UserService} from "../../services/UserService";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import jwt_decode from "jwt-decode"
 import * as bcrypt from 'bcryptjs';
+import {UserProfile} from "../../models/UserProfile";
 
 @Component({
   selector: 'app-profile',
@@ -15,8 +16,15 @@ export class ProfileComponent implements OnInit {
   currentUser = localStorage.getItem('currentUser')
   paresdJSON: any;
   decoded: any;
+  user?: UserProfile | undefined;
 
   constructor(private userService: UserService, private _snackBar: MatSnackBar) {
+    if(this.currentUser != null) {
+      this.decoded = jwt_decode(this.currentUser)
+      this.userService.findOneProfile(this.decoded.id).subscribe(
+        value => {this.user = value}
+      )
+    }
   }
 
   ngOnInit(): void {
