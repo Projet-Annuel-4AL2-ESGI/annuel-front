@@ -21,13 +21,16 @@
 
         <button class="mat-button">Follow</button>
 
-        <mat-grid-list cols="2">
+        <mat-grid-list cols="4">
+          <mat-grid-tile class="grid-content"></mat-grid-tile>
           <mat-grid-tile class="grid-content">
-            <h3 class="font-light">{{user?.followers}}</h3><small>Followers</small>
+            <h3 class="font-light">{{user?.followers}}</h3><small (click)="openDialog()"> Followers</small>
           </mat-grid-tile>
           <mat-grid-tile class="grid-content">
             <h3 class="font-light">{{user?.followings}}</h3><small>Following</small>
           </mat-grid-tile>
+          <mat-grid-tile class="grid-content"></mat-grid-tile>
+
         </mat-grid-list>
 
       </div>

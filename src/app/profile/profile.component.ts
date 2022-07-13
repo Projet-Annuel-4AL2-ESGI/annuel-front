@@ -7,6 +7,8 @@ import * as bcrypt from 'bcryptjs';
 import {UserProfile} from "../../models/UserProfile";
 import {DomSanitizer} from "@angular/platform-browser";
 import {UserImage} from "../../models/UserImage";
+import {MatDialog} from "@angular/material/dialog";
+import {DialogFollowComponent} from "./dialog-follow/dialog-follow.component";
 
 @Component({
   selector: 'app-profile',
@@ -21,7 +23,8 @@ export class ProfileComponent implements OnInit {
   user: any;
   selectedFile: any;
 
-  constructor(private _sanitizer: DomSanitizer, private userService: UserService, private _snackBar: MatSnackBar) {
+  constructor(private _sanitizer: DomSanitizer, private userService: UserService, private _snackBar: MatSnackBar,
+              private matDialog: MatDialog) {
     if(this.currentUser != null) {
       this.decoded = jwt_decode(this.currentUser)
       this.userService.findOneProfile(this.decoded.id).subscribe(
@@ -45,6 +48,10 @@ export class ProfileComponent implements OnInit {
         this.userService.updateImage(this.decoded.id, userImage).subscribe();
       }
     };
+  }
+
+  openDialog(){
+    this.matDialog.open(DialogFollowComponent);
   }
 
   openSnackBarError(message: string) {

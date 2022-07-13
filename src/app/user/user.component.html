@@ -1,0 +1,33 @@
+<div class="padding">
+  <div class="col-md-8">
+    <div class="card"> <img class="card-img-top" src="https://i.imgur.com/bTIbBnY.jpeg" alt="Card image cap">
+
+      <div class="card-body text-center">
+        <div class="pro-img">
+          <div *ngIf="user.event.image == null">
+              <img class="rounded" src="https://material.angular.io/assets/img/examples/shiba1.jpg" alt="user" mat-card-avatar>
+          </div>
+          <div *ngIf="user.event.image != null" mat-card-avatar>
+              <img class="rounded" [src]="sanitize(user.event.image)" mat-card-avatar>
+          </div>
+        </div>
+        <h3 class="m-b-0">{{user?.event.username}}</h3>
+
+        <button class="mat-button">Follow</button>
+
+        <mat-grid-list cols="4">
+          <mat-grid-tile class="grid-content"></mat-grid-tile>
+          <mat-grid-tile class="grid-content">
+            <h3 class="font-light">{{user?.event.followers}}</h3><small (click)="openDialog()"> Followers</small>
+          </mat-grid-tile>
+          <mat-grid-tile class="grid-content">
+            <h3 class="font-light">{{user?.event.followings}}</h3><small>Following</small>
+          </mat-grid-tile>
+          <mat-grid-tile class="grid-content"></mat-grid-tile>
+
+        </mat-grid-list>
+
+      </div>
+    </div>
+  </div>
+</div>

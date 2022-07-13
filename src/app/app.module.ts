@@ -12,6 +12,9 @@ import {HomeCenterComponent} from './home/home-center/home-center.component';
 import { HomeLeftComponent } from './home/home-left/home-left.component';
 import {AuthGuard} from "./auth.guard";
 import { AuthComponent } from './auth/auth.component';
+import { DialogFollowComponent } from './profile/dialog-follow/dialog-follow.component';
+import { MatDialogModule } from "@angular/material/dialog";
+import { UserComponent } from './user/user.component';
 
 @NgModule({
   declarations: [
@@ -21,14 +24,17 @@ import { AuthComponent } from './auth/auth.component';
     IdeComponent,
     HomeCenterComponent,
     HomeLeftComponent,
-    AuthComponent
+    AuthComponent,
+    DialogFollowComponent,
+    UserComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     BrowserAnimationsModule,
-    SharingModule
+    SharingModule,
+    MatDialogModule
   ],
   providers: [AuthGuard],
   bootstrap: [AppComponent]
