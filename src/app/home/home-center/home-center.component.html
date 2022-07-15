@@ -8,7 +8,7 @@
         </mat-card-header>
       </div>
       <div *ngIf="item.type == 'notif'">
-        <mat-card-header style="padding-bottom: 10px">
+        <mat-card-header style="padding-bottom: 10px" routerLink="/user/{{item.userId}}">
           <div *ngIf="item.userImage == null" mat-card-avatar>
             <div class="header-image" mat-card-avatar></div>
           </div>
@@ -31,7 +31,12 @@
       </mat-card-content>
 
       <mat-card-actions align="end">
-        <button mat-button>LIKE</button>
+        <div *ngIf="item.liked == false">
+          <button mat-button (click)="like(item)">LIKE</button>
+        </div>
+        <div *ngIf="item.liked == true">
+          <button mat-button (click)="dislike(item)">DISLIKE</button>
+        </div>
       </mat-card-actions>
 
     </mat-card>

@@ -2,6 +2,10 @@ import {Component, OnInit} from '@angular/core';
 import {DomSanitizer} from "@angular/platform-browser";
 import {Post} from "../../../models/Post";
 import {PostService} from "../../../services/PostService";
+import jwt_decode from "jwt-decode";
+import {Like} from "../../../models/Like";
+import {LikeService} from "../../../services/LikeService";
+import {PostLikes} from "../../../models/PostLikes";
 
 @Component({
   selector: 'app-home-center',
@@ -40,21 +44,43 @@ export class HomeCenterComponent implements OnInit {
     },
   ]
 
+  currentUser = localStorage.getItem('currentUser')
+  decoded: any
   posts: any;
 
-  constructor(private _sanitizer: DomSanitizer, private postService: PostService) {
+  constructor(private _sanitizer: DomSanitizer, private postService: PostService, private likeService: LikeService) {
 
-    postService.getPosts().subscribe( posts => {
-      this.posts = posts;
-    } );
+    if(this.currentUser != null) {
+      this.decoded = jwt_decode(this.currentUser)
+      postService.getPostsLikes(this.decoded.id).subscribe( posts => {
+        this.posts = posts;
+      })
+    }
+    else {
+      postService.getPosts().subscribe( posts => {
+        this.posts = posts;
+      } );
+    }
   }
-
-
 
   ngOnInit(): void {
   }
 
   ngAfterViewInit(): void {
+  }
+
+  public like(post: PostLikes): any {
+    const like = new Like(null, this.decoded.id, post.id);
+    this.likeService.like(like).subscribe(
+      value => {post.liked = true}
+    )
+  }
+
+  public dislike(post: PostLikes): any {
+    const like = new Like(null, this.decoded.id, post.id);
+    this.likeService.dislike(like).subscribe(
+      value => {post.liked = false}
+    )
   }
 
   sanitize(image: string): any {
