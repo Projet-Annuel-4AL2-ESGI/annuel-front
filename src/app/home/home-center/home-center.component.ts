@@ -98,6 +98,7 @@ export class HomeCenterComponent implements OnInit {
         width: '600px',
         data: {
           data: comments,
+          postId: item,
         }
       });
     });

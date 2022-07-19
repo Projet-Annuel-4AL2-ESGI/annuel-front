@@ -26,13 +26,13 @@ export class CommentDialogComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.data.data);
+    console.log(this.data);
   }
 
   printMessage(){
     const comment: Comment = {
       id: null,
-      postId: this.comments[0].postId,
+      postId: this.data.postId,
       userId: this.decoded.id,
       commentMessage: this.message,
     };
