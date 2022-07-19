@@ -6,6 +6,10 @@ import jwt_decode from "jwt-decode";
 import {Like} from "../../../models/Like";
 import {LikeService} from "../../../services/LikeService";
 import {PostLikes} from "../../../models/PostLikes";
+import {DialogFollowComponent} from "../../profile/dialog-follow/dialog-follow.component";
+import {CommentDialogComponent} from "./comment-dialog/comment-dialog.component";
+import {MatDialog} from "@angular/material/dialog";
+import {CommentService} from "../../../services/CommentService";
 
 @Component({
   selector: 'app-home-center',
@@ -48,7 +52,8 @@ export class HomeCenterComponent implements OnInit {
   decoded: any
   posts: any;
 
-  constructor(private _sanitizer: DomSanitizer, private postService: PostService, private likeService: LikeService) {
+  constructor(private _sanitizer: DomSanitizer, private postService: PostService, private likeService: LikeService,
+              private matDialog: MatDialog, private commentService: CommentService) {
 
     if(this.currentUser != null) {
       this.decoded = jwt_decode(this.currentUser)
@@ -81,6 +86,21 @@ export class HomeCenterComponent implements OnInit {
     this.likeService.dislike(like).subscribe(
       value => {post.liked = false}
     )
+  }
+
+  async openDialog(item: number){
+    let comments: any;
+    await this.commentService.getCommentsByPost(item).subscribe(value => {
+      comments = value;
+      console.log(value);
+      this.matDialog.open(CommentDialogComponent, {
+        height: '500px',
+        width: '600px',
+        data: {
+          data: comments,
+        }
+      });
+    });
   }
 
   sanitize(image: string): any {

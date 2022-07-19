@@ -31,11 +31,18 @@
       </mat-card-content>
 
       <mat-card-actions align="end">
+        <div *ngIf="currentUser != null">
+          <button mat-button (click)="openDialog(item.id)">COMMENTS</button>
+        </div>
         <div *ngIf="item.liked == false">
-          <button mat-button (click)="like(item)">LIKE</button>
+          <button mat-button (click)="like(item)">
+            <mat-icon>favorite_border</mat-icon>
+          </button>
         </div>
         <div *ngIf="item.liked == true">
-          <button mat-button (click)="dislike(item)">DISLIKE</button>
+          <button mat-button (click)="dislike(item)">
+            <mat-icon>favorite</mat-icon>
+          </button>
         </div>
       </mat-card-actions>
 

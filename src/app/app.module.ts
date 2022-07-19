@@ -15,6 +15,7 @@ import { AuthComponent } from './auth/auth.component';
 import { DialogFollowComponent } from './profile/dialog-follow/dialog-follow.component';
 import { MatDialogModule } from "@angular/material/dialog";
 import { UserComponent } from './user/user.component';
+import { CommentDialogComponent } from './home/home-center/comment-dialog/comment-dialog.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { UserComponent } from './user/user.component';
     HomeLeftComponent,
     AuthComponent,
     DialogFollowComponent,
-    UserComponent
+    UserComponent,
+    CommentDialogComponent
   ],
   imports: [
     BrowserModule,
