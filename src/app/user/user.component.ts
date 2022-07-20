@@ -8,6 +8,8 @@ import {UserImage} from "../../models/UserImage";
 import {DialogFollowComponent} from "../profile/dialog-follow/dialog-follow.component";
 import {ActivatedRoute} from "@angular/router";
 import {UserProfile} from "../../models/UserProfile";
+import {FollowService} from "../../services/FollowService";
+import {Follow} from "../../models/Follow";
 
 @Component({
   selector: 'app-user',
@@ -20,23 +22,80 @@ export class UserComponent implements OnInit {
   decoded: any;
   user: any;
   selectedFile: any;
+  isFollow: any = [];
 
   constructor(private _sanitizer: DomSanitizer, private userService: UserService, private _snackBar: MatSnackBar,
-              private matDialog: MatDialog, private activatedRoute: ActivatedRoute) {
-    if(this.currentUser != null) {
-      this.decoded = jwt_decode(this.currentUser)
-    }
+              private matDialog: MatDialog, private activatedRoute: ActivatedRoute, private followService: FollowService) {
     this.activatedRoute.data.subscribe(
       value => {this.user = value}
     )
-  }
 
-  ngOnInit(): void {
     console.log(this.user);
   }
 
-  openDialog(){
-    this.matDialog.open(DialogFollowComponent);
+  ngOnInit(): void {
+    if(this.currentUser != null) {
+      this.decoded = jwt_decode(this.currentUser)
+      this.followService.getOneFollowing(this.decoded.id, this.user.event.id).subscribe( value =>{
+        console.log(value);
+          this.isFollow = value;
+          console.log(this.isFollow);
+      })
+    }
+  }
+
+  ngAfterViewInit(): void {
+  }
+
+  async openDialogFollowers(){
+    await this.userService.getFollowersList(this.user.event.id).subscribe(value => {
+      this.matDialog.open(DialogFollowComponent, {
+        height: '500px',
+        width: '400px',
+        data: {
+          users: value,
+        }
+      });
+    })
+  }
+
+  async openDialogFollowing(){
+    await this.userService.getFollowingList(this.user.event.id).subscribe(value => {
+      this.matDialog.open(DialogFollowComponent, {
+        height: '500px',
+        width: '400px',
+        data: {
+          users: value,
+        }
+      });
+    })
+  }
+
+  follow() {
+    const follow: Follow = {
+      id: null,
+      follower: this.decoded.id,
+      following: this.user.event.id
+    }
+    if(this.currentUser != null) {
+      this.followService.follow(follow).subscribe( value => {
+        this.isFollow.push(value);
+      })
+    }
+    this.isFollow.push(follow);
+  }
+
+  unfollow() {
+    const follow: Follow = {
+      id: null,
+      follower: this.decoded.id,
+      following: this.user.event.id
+    }
+    if(this.currentUser != null) {
+      this.followService.unfollow(follow).subscribe( value => {
+        this.isFollow.pop();
+      })
+    }
   }
 
 

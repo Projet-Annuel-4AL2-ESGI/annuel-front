@@ -19,15 +19,13 @@
         </div>
         <h3 class="m-b-0">{{user?.username}}</h3>
 
-        <button class="mat-button">Follow</button>
-
         <mat-grid-list cols="4">
           <mat-grid-tile class="grid-content"></mat-grid-tile>
           <mat-grid-tile class="grid-content">
-            <h3 class="font-light">{{user?.followers}}</h3><small (click)="openDialog()"> Followers</small>
+            <h3 class="font-light">{{user?.followers}}</h3><small (click)="openDialogFollower()"> Followers</small>
           </mat-grid-tile>
           <mat-grid-tile class="grid-content">
-            <h3 class="font-light">{{user?.followings}}</h3><small>Following</small>
+            <h3 class="font-light">{{user?.followings}}</h3><small (click)="openDialogFollowing()">Following</small>
           </mat-grid-tile>
           <mat-grid-tile class="grid-content"></mat-grid-tile>
 

@@ -45,4 +45,10 @@ export class UserService {
   public updateImage(id: number, updateImage: UserImage): Observable<string> {
     return this.httpClient.post('http://localhost:3000/user/upload/'+ id, JSON.parse(JSON.stringify(updateImage))) as Observable<string>
   }
+  public getFollowersList(id: number): Observable<UserFollow[]> {
+    return this.httpClient.get('http://localhost:3000/user/follow/list/'+ id) as Observable<UserFollow[]>
+  }
+  public getFollowingList(id: number): Observable<UserFollow[]> {
+    return this.httpClient.get('http://localhost:3000/user/following/list/'+ id) as Observable<UserFollow[]>
+  }
 }

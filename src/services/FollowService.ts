@@ -27,4 +27,8 @@ export class FollowService {
   public getFollowings(id: number) : Observable<Follow> {
     return this.httpClient.get("http://localhost:3000/follow/following/" + id) as Observable<Follow>
   }
+
+  public getOneFollowing(userId: number, id: number) : Observable<Follow> {
+    return this.httpClient.get("http://localhost:3000/follow/isfollowing/" + userId + "/" + id) as Observable<Follow>
+  }
 }

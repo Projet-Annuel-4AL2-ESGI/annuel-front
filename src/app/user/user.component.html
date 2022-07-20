@@ -13,15 +13,20 @@
         </div>
         <h3 class="m-b-0">{{user?.event.username}}</h3>
 
-        <button class="mat-button">Follow</button>
+        <div *ngIf="isFollow.length == 0">
+          <button class="mat-button" (click)="follow()">Follow</button>
+        </div>
+        <div *ngIf="isFollow.length > 0">
+          <button class="mat-button" (click)="unfollow()">Unfollow</button>
+        </div>
 
         <mat-grid-list cols="4">
           <mat-grid-tile class="grid-content"></mat-grid-tile>
           <mat-grid-tile class="grid-content">
-            <h3 class="font-light">{{user?.event.followers}}</h3><small (click)="openDialog()"> Followers</small>
+            <h3 class="font-light">{{user?.event.followers}}</h3><small (click)="openDialogFollowers()"> Followers</small>
           </mat-grid-tile>
           <mat-grid-tile class="grid-content">
-            <h3 class="font-light">{{user?.event.followings}}</h3><small>Following</small>
+            <h3 class="font-light">{{user?.event.followings}}</h3><small (click)="openDialogFollowing()">Following</small>
           </mat-grid-tile>
           <mat-grid-tile class="grid-content"></mat-grid-tile>
 

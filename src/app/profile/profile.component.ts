@@ -50,8 +50,28 @@ export class ProfileComponent implements OnInit {
     };
   }
 
-  openDialog(){
-    this.matDialog.open(DialogFollowComponent);
+  async openDialogFollower(){
+    await this.userService.getFollowersList(this.decoded.id).subscribe(value => {
+      this.matDialog.open(DialogFollowComponent, {
+        height: '500px',
+        width: '400px',
+        data: {
+          users: value,
+        }
+      });
+    })
+  }
+
+  async openDialogFollowing(){
+    await this.userService.getFollowingList(this.decoded.id).subscribe(value => {
+      this.matDialog.open(DialogFollowComponent, {
+        height: '500px',
+        width: '400px',
+        data: {
+          users: value,
+        }
+      });
+    })
   }
 
   openSnackBarError(message: string) {

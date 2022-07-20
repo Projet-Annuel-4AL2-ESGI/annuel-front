@@ -1,14 +1,14 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import { MAT_DIALOG_DATA} from "@angular/material/dialog";
+import {MAT_DIALOG_DATA} from "@angular/material/dialog";
 import {DomSanitizer} from "@angular/platform-browser";
 import {UserFollow} from "../../../models/UserFollow";
 
 @Component({
-  selector: 'app-dialog-follow',
-  templateUrl: './dialog-follow.component.html',
-  styleUrls: ['./dialog-follow.component.css']
+  selector: 'app-dialog-following',
+  templateUrl: './dialog-following.component.html',
+  styleUrls: ['./dialog-following.component.css']
 })
-export class DialogFollowComponent implements OnInit {
+export class DialogFollowingComponent implements OnInit {
 
   currentUser = localStorage.getItem('currentUser')
   decoded: any
@@ -19,7 +19,6 @@ export class DialogFollowComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.userList);
   }
 
   sanitize(image: string): any {

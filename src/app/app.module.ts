@@ -16,6 +16,7 @@ import { DialogFollowComponent } from './profile/dialog-follow/dialog-follow.com
 import { MatDialogModule } from "@angular/material/dialog";
 import { UserComponent } from './user/user.component';
 import { CommentDialogComponent } from './home/home-center/comment-dialog/comment-dialog.component';
+import { DialogFollowingComponent } from './profile/dialog-following/dialog-following.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { CommentDialogComponent } from './home/home-center/comment-dialog/commen
     AuthComponent,
     DialogFollowComponent,
     UserComponent,
-    CommentDialogComponent
+    CommentDialogComponent,
+    DialogFollowingComponent
   ],
   imports: [
     BrowserModule,
