@@ -8,7 +8,8 @@ export class Post {
     public description: string,
     public likes: number,
     public userImage: string | null,
-    public image: string | null
+    public image: string | null,
+    public exoId: number | null
   ) {
   }
 }

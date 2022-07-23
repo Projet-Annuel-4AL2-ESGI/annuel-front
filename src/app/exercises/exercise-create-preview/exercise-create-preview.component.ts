@@ -5,6 +5,7 @@ import {DomSanitizer} from "@angular/platform-browser";
 import jwt_decode from "jwt-decode";
 import {PostService} from "../../../services/PostService";
 import {ExerciseService} from "../../../services/ExerciseService";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-exercise-create-preview',
@@ -20,12 +21,14 @@ export class ExerciseCreatePreviewComponent implements OnInit {
   description: string = "";
   selectedFile: any;
 
-  constructor(private _sanitizer: DomSanitizer, private postService: PostService, private exerciseService: ExerciseService) {
+  constructor(private _sanitizer: DomSanitizer, private postService: PostService, private exerciseService: ExerciseService,
+              private router: Router) {
     if (this.currentUser != null) {
       this.decodedUser = jwt_decode(this.currentUser)
     }
     this.exercise = history.state.data["exercise-created"] as Exercise
-    this.post = new Post(null, "exo", this.decodedUser.id, this.decodedUser.username, this.exercise!.title, "", 0, null, null)
+    this.post = new Post(null, "exo", null, null, this.exercise!.title,
+      "", 0, null, null, null)
   }
 
   //TODO: username undefined
@@ -44,6 +47,13 @@ export class ExerciseCreatePreviewComponent implements OnInit {
     this.exercise!.description = this.description
     console.log(this.exercise)
     console.log(this.post)
+    this.exerciseService.create(this.exercise!).subscribe(value => {
+      this.post!.exoId = value.id;
+      this.postService.create(this.post!).subscribe(async () => {
+          await this.router.navigate(['/']).then(() => window.location.reload());
+        }
+      )
+    })
     //this.postService.create(this.post!)
     //this.exerciseService.create(this.exercise!) //TODO: Update post and exercise services with create method, maybe check sent data ??
   }

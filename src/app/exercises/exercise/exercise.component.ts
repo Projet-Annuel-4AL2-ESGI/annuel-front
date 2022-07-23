@@ -5,6 +5,7 @@ import {CodeService} from "../../../services/CodeService";
 import {ActivatedRoute} from "@angular/router";
 import {MatDialog} from "@angular/material/dialog";
 import {ExerciseResponseDialogComponent} from "../exercise-response-dialog/exercise-response-dialog.component";
+import {ExerciseService} from "../../../services/ExerciseService";
 
 @Component({
   selector: 'app-exercise',
@@ -19,7 +20,8 @@ export class ExerciseComponent implements OnInit {
   @ViewChild("editor") private editor!: ElementRef<HTMLElement>;
   @ViewChild("output") private output!: ElementRef<HTMLElement>;
 
-  constructor(private codeService: CodeService, private activatedRoute: ActivatedRoute, private matDialog: MatDialog) {
+  constructor(private codeService: CodeService, private activatedRoute: ActivatedRoute, private matDialog: MatDialog,
+              private exoService: ExerciseService) {
     this.activatedRoute.data.subscribe(value => {
       this.exercise = value['event']
     })
@@ -40,28 +42,29 @@ export class ExerciseComponent implements OnInit {
     aceEditor.session.setValue("print ('Hello World!')");
   }
 
-  async runClicked() {
+
+  runClicked() {
     const aceEditor = ace.edit(this.editor.nativeElement)
-    console.log()
-    await this.codeService.postCode(new Code(this.selectedLanguage, aceEditor.session.getValue())).subscribe(
+    let code = new Code(this.selectedLanguage,
+      this.exercise.exoResponse + '\n' + aceEditor.session.getValue() + '\n' + this.exercise.exoCheck)
+    this.exoService.verifyExo(code).subscribe(
       value => {
-        this.matDialog.open(ExerciseResponseDialogComponent, {
-          height: '500px',
-          width: '600px',
-          data: {
-            data: value
-          }
-        });
+        this.openDialog(value);
       },
       error => {
-        this.matDialog.open(ExerciseResponseDialogComponent, {
-          height: '500px',
-          width: '600px',
-          data: {
-            data: error.error.text
-          }
-        });
+        this.openDialog(error.error.text)
       }
     )
+  }
+
+  openDialog(data: string) {
+    this.matDialog.open(ExerciseResponseDialogComponent, {
+      height: '500px',
+      width: '600px',
+      data: {
+        data: data,
+        exo: this.exercise,
+      }
+    });
   }
 }
