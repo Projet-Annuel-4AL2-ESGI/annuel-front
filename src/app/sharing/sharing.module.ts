@@ -18,19 +18,19 @@ import {CommonModule} from "@angular/common";
 
     MenuComponent
   ],
-    imports: [
-        MatCardModule,
-        MatTabsModule,
-        MatInputModule,
-        MatButtonModule,
-        FormsModule,
-        MatIconModule,
-        MatGridListModule,
-        HttpClientModule,
-        MatSnackBarModule,
-        MatToolbarModule,
-        CommonModule
-    ],
+  imports: [
+    MatCardModule,
+    MatTabsModule,
+    MatInputModule,
+    MatButtonModule,
+    FormsModule,
+    MatIconModule,
+    MatGridListModule,
+    HttpClientModule,
+    MatSnackBarModule,
+    MatToolbarModule,
+    CommonModule
+  ],
   exports: [
     MatCardModule,
     MatTabsModule,

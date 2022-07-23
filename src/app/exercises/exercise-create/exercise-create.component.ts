@@ -16,13 +16,6 @@ import {Exercise} from "../../../models/Exercise";
 })
 export class ExerciseCreateComponent implements OnInit {
 
-  constructor(private codeService: CodeService, private matDialog: MatDialog, private _ngZone: NgZone, private router: Router) { }
-
-  @ViewChild("editor1") private editor1!: ElementRef<HTMLElement>;
-  @ViewChild("editor2") private editor2!: ElementRef<HTMLElement>;
-  @ViewChild("editor3") private editor3!: ElementRef<HTMLElement>;
-  @ViewChild('autosize') private autosize!: CdkTextareaAutosize;
-
   selectedLanguage: string = "py";
   languages = [
     //{ name: "C", value: "c" },
@@ -33,8 +26,16 @@ export class ExerciseCreateComponent implements OnInit {
   ]
   rules: string = "";
   title: string = "";
+  @ViewChild("editor1") private editor1!: ElementRef<HTMLElement>;
+  @ViewChild("editor2") private editor2!: ElementRef<HTMLElement>;
+  @ViewChild("editor3") private editor3!: ElementRef<HTMLElement>;
+  @ViewChild('autosize') private autosize!: CdkTextareaAutosize;
 
-  ngOnInit(): void {}
+  constructor(private codeService: CodeService, private matDialog: MatDialog, private _ngZone: NgZone, private router: Router) {
+  }
+
+  ngOnInit(): void {
+  }
 
   ngAfterViewInit(): void {
 

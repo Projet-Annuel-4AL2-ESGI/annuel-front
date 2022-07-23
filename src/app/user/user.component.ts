@@ -1,13 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {DomSanitizer} from "@angular/platform-browser";
 import {UserService} from "../../services/UserService";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {MatDialog} from "@angular/material/dialog";
 import jwt_decode from "jwt-decode";
-import {UserImage} from "../../models/UserImage";
 import {DialogFollowComponent} from "../profile/dialog-follow/dialog-follow.component";
 import {ActivatedRoute} from "@angular/router";
-import {UserProfile} from "../../models/UserProfile";
 import {FollowService} from "../../services/FollowService";
 import {Follow} from "../../models/Follow";
 
@@ -27,19 +25,21 @@ export class UserComponent implements OnInit {
   constructor(private _sanitizer: DomSanitizer, private userService: UserService, private _snackBar: MatSnackBar,
               private matDialog: MatDialog, private activatedRoute: ActivatedRoute, private followService: FollowService) {
     this.activatedRoute.data.subscribe(
-      value => {this.user = value}
+      value => {
+        this.user = value
+      }
     )
 
     console.log(this.user);
   }
 
   ngOnInit(): void {
-    if(this.currentUser != null) {
+    if (this.currentUser != null) {
       this.decoded = jwt_decode(this.currentUser)
-      this.followService.getOneFollowing(this.decoded.id, this.user.event.id).subscribe( value =>{
+      this.followService.getOneFollowing(this.decoded.id, this.user.event.id).subscribe(value => {
         console.log(value);
-          this.isFollow = value;
-          console.log(this.isFollow);
+        this.isFollow = value;
+        console.log(this.isFollow);
       })
     }
   }
@@ -47,7 +47,7 @@ export class UserComponent implements OnInit {
   ngAfterViewInit(): void {
   }
 
-  async openDialogFollowers(){
+  async openDialogFollowers() {
     await this.userService.getFollowersList(this.user.event.id).subscribe(value => {
       this.matDialog.open(DialogFollowComponent, {
         height: '500px',
@@ -59,7 +59,7 @@ export class UserComponent implements OnInit {
     })
   }
 
-  async openDialogFollowing(){
+  async openDialogFollowing() {
     await this.userService.getFollowingList(this.user.event.id).subscribe(value => {
       this.matDialog.open(DialogFollowComponent, {
         height: '500px',
@@ -77,8 +77,8 @@ export class UserComponent implements OnInit {
       follower: this.decoded.id,
       following: this.user.event.id
     }
-    if(this.currentUser != null) {
-      this.followService.follow(follow).subscribe( value => {
+    if (this.currentUser != null) {
+      this.followService.follow(follow).subscribe(value => {
         this.isFollow.push(value);
       })
     }
@@ -91,8 +91,8 @@ export class UserComponent implements OnInit {
       follower: this.decoded.id,
       following: this.user.event.id
     }
-    if(this.currentUser != null) {
-      this.followService.unfollow(follow).subscribe( value => {
+    if (this.currentUser != null) {
+      this.followService.unfollow(follow).subscribe(value => {
         this.isFollow.pop();
       })
     }

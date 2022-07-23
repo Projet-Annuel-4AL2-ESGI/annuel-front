@@ -1,15 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Exercise} from "../../../models/Exercise";
 import {Post} from "../../../models/Post";
 import {DomSanitizer} from "@angular/platform-browser";
 import jwt_decode from "jwt-decode";
 import {PostService} from "../../../services/PostService";
 import {ExerciseService} from "../../../services/ExerciseService";
-import {UserService} from "../../../services/UserService";
-import {MatSnackBar} from "@angular/material/snack-bar";
-import {MatDialog} from "@angular/material/dialog";
-import {UserImage} from "../../../models/UserImage";
-import {DialogFollowComponent} from "../../profile/dialog-follow/dialog-follow.component";
 
 @Component({
   selector: 'app-exercise-create-preview',
@@ -37,7 +32,8 @@ export class ExerciseCreatePreviewComponent implements OnInit {
   //TODO: userId ok ??
   //TODO: image ok ??
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+  }
 
   sanitize(image: string): any {
     return this._sanitizer.bypassSecurityTrustUrl('data:image/jpeg;base64,' + image);
@@ -52,12 +48,12 @@ export class ExerciseCreatePreviewComponent implements OnInit {
     //this.exerciseService.create(this.exercise!) //TODO: Update post and exercise services with create method, maybe check sent data ??
   }
 
-  onImageChanged(event: any){
+  onImageChanged(event: any) {
     this.selectedFile = event.target.files[0];
     const reader = new FileReader();
     reader.readAsDataURL(this.selectedFile);
     reader.onload = () => {
-      if(reader.result != null && typeof reader.result === "string") {
+      if (reader.result != null && typeof reader.result === "string") {
         this.post.image = reader.result.split(',')[1]
       }
     };

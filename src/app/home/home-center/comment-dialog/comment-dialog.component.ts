@@ -20,7 +20,7 @@ export class CommentDialogComponent implements OnInit {
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any, public commentService: CommentService, public _sanitizer: DomSanitizer) {
     this.comments = this.data.data;
-    if(this.currentUser != null) {
+    if (this.currentUser != null) {
       this.decoded = jwt_decode(this.currentUser)
     }
   }
@@ -29,7 +29,7 @@ export class CommentDialogComponent implements OnInit {
     console.log(this.data);
   }
 
-  printMessage(){
+  printMessage() {
     const comment: Comment = {
       id: null,
       postId: this.data.postId,

@@ -17,6 +17,6 @@ export class LikeService {
 
   public dislike(like: Like): Observable<string> {
     return this.httpClient.delete(`http://127.0.0.1:3000/likes`,
-      { "body": JSON.parse(JSON.stringify(like))}) as Observable<string>;
+      {"body": JSON.parse(JSON.stringify(like))}) as Observable<string>;
   }
 }

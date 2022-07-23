@@ -1,6 +1,6 @@
-import { TestBed } from '@angular/core/testing';
+import {TestBed} from '@angular/core/testing';
 
-import { ExerciseResolver } from './exercise.resolver';
+import {ExerciseResolver} from './exercise.resolver';
 
 describe('ExerciseResolverResolver', () => {
   let resolver: ExerciseResolver;

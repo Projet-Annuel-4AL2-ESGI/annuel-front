@@ -1,4 +1,4 @@
-<mat-sidenav-container class="container" autosize>
+<mat-sidenav-container autosize class="container">
   <mat-sidenav mode="side" opened style="min-width: 10vw; max-width: 30vw; padding: 2vw">
     <h3>Exercise Creation</h3>
     <br>
@@ -8,15 +8,18 @@
     </p>
     <mat-form-field appearance="fill" style="width: 100%; margin-top: 7.5vh">
       <mat-label>Guidelines</mat-label>
-      <textarea matInput
-                cdkTextareaAutosize
-                #autosize="cdkTextareaAutosize"
-                cdkAutosizeMinRows="20"
+      <textarea #autosize="cdkTextareaAutosize"
+                [(ngModel)]="description"
                 cdkAutosizeMaxRows="20"
-                [(ngModel)]="description"></textarea>
+                cdkAutosizeMinRows="20"
+                cdkTextareaAutosize
+                matInput></textarea>
     </mat-form-field>
-    <input id="file-input" type="file" (change)="onImageChanged($event)" style="width: 50%; margin-left: 25%">
-    <button mat-raised-button class="btn" (click)="saveClicked()"><mat-icon style="margin-right: 10px">save</mat-icon>Save</button>
+    <input (change)="onImageChanged($event)" id="file-input" style="width: 50%; margin-left: 25%" type="file">
+    <button (click)="saveClicked()" class="btn" mat-raised-button>
+      <mat-icon style="margin-right: 10px">save</mat-icon>
+      Save
+    </button>
   </mat-sidenav>
   <mat-sidenav-content class="center">
     <mat-card class="card-home-center">
@@ -26,7 +29,7 @@
       </mat-card-header>
 
       <div *ngIf="post.image != null" style="max-height: 25vw; overflow: hidden">
-        <img alt="Photo" mat-card-image [src]="sanitize(post.image)" style="max-height: 100%; object-fit: contain">
+        <img [src]="sanitize(post.image)" alt="Photo" mat-card-image style="max-height: 100%; object-fit: contain">
       </div>
 
       <mat-card-content [style.padding-top]="post.image != null ? '5vh' : '0vh'">

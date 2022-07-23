@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { DialogFollowingComponent } from './dialog-following.component';
+import {DialogFollowingComponent} from './dialog-following.component';
 
 describe('DialogFollowingComponent', () => {
   let component: DialogFollowingComponent;
@@ -8,9 +8,9 @@ describe('DialogFollowingComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ DialogFollowingComponent ]
+      declarations: [DialogFollowingComponent]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

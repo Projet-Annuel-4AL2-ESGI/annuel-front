@@ -2,9 +2,7 @@ import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import * as ace from "ace-builds";
 import {Code} from "../../../models/Code";
 import {CodeService} from "../../../services/CodeService";
-import {ActivatedRoute, Data} from "@angular/router";
-import {Exercise} from "../../../models/Exercise";
-import {CommentDialogComponent} from "../../home/home-center/comment-dialog/comment-dialog.component";
+import {ActivatedRoute} from "@angular/router";
 import {MatDialog} from "@angular/material/dialog";
 import {ExerciseResponseDialogComponent} from "../exercise-response-dialog/exercise-response-dialog.component";
 
@@ -27,7 +25,8 @@ export class ExerciseComponent implements OnInit {
     })
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+  }
 
   ngAfterViewInit(): void {
     const aceEditor = ace.edit(this.editor.nativeElement);

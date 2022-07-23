@@ -1,16 +1,14 @@
 import {Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
-import {Router} from "@angular/router";
 import {Observable} from "rxjs";
-import {Post} from "../models/Post";
-import {PostLikes} from "../models/PostLikes";
 import {Exercise} from "../models/Exercise";
 
 @Injectable({
   providedIn: 'root'
 })
 export class ExerciseService {
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient) {
+  }
 
   public create(exercise: Exercise): Observable<Exercise> {
     return this.httpClient.post("http://127.0.0.1:3000/exo/", exercise) as Observable<Exercise>

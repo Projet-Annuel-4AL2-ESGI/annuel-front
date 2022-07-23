@@ -1,21 +1,22 @@
 <div class="padding">
   <div class="col-md-8">
-    <div class="card"> <img class="card-img-top" src="https://i.imgur.com/bTIbBnY.jpeg" alt="Card image cap">
+    <div class="card"><img alt="Card image cap" class="card-img-top" src="https://i.imgur.com/bTIbBnY.jpeg">
 
       <div class="card-body text-center">
 
         <div class="pro-img image-upload">
           <div *ngIf="user.image == null">
             <label for="file-input" mat-card-avatar>
-              <img class="rounded" src="https://material.angular.io/assets/img/examples/shiba1.jpg" alt="user" mat-card-avatar>
+              <img alt="user" class="rounded" mat-card-avatar
+                   src="https://material.angular.io/assets/img/examples/shiba1.jpg">
             </label>
           </div>
           <div *ngIf="user.image != null" mat-card-avatar>
             <label for="file-input" mat-card-avatar>
-              <img class="rounded" [src]="sanitize(user.image)" mat-card-avatar>
+              <img [src]="sanitize(user.image)" class="rounded" mat-card-avatar>
             </label>
           </div>
-          <input id="file-input" type="file" (change)="onImageChanged($event)">
+          <input (change)="onImageChanged($event)" id="file-input" type="file">
         </div>
         <h3 class="m-b-0">{{user?.username}}</h3>
 

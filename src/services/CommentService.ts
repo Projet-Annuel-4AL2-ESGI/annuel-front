@@ -33,6 +33,6 @@ export class CommentService {
   }
 
   public getCommentsByPost(id: number): Observable<CommentGet[]> {
-    return this.httpClient.get("http://localhost:3000/comment/post/"+ id) as Observable<CommentGet[]>;
+    return this.httpClient.get("http://localhost:3000/comment/post/" + id) as Observable<CommentGet[]>;
   }
 }

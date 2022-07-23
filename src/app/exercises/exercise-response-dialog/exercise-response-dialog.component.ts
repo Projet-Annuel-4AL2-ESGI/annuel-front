@@ -1,8 +1,5 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA} from "@angular/material/dialog";
-import {CommentService} from "../../../services/CommentService";
-import {DomSanitizer} from "@angular/platform-browser";
-import jwt_decode from "jwt-decode";
 
 @Component({
   selector: 'app-exercise-response-dialog',
@@ -17,6 +14,7 @@ export class ExerciseResponseDialogComponent implements OnInit {
     this.response = this.data.data;
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+  }
 
 }

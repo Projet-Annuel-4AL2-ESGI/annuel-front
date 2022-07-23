@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { ExerciseCreatePreviewComponent } from './exercise-create-preview.component';
+import {ExerciseCreatePreviewComponent} from './exercise-create-preview.component';
 
 describe('ExerciseCreatePreviewComponent', () => {
   let component: ExerciseCreatePreviewComponent;
@@ -8,9 +8,9 @@ describe('ExerciseCreatePreviewComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ExerciseCreatePreviewComponent ]
+      declarations: [ExerciseCreatePreviewComponent]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

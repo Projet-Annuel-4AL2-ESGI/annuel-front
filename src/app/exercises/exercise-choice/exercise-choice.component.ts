@@ -14,13 +14,14 @@ export class ExerciseChoiceComponent implements OnInit {
   currentUser = localStorage.getItem('currentUser')
 
   constructor(private _sanitizer: DomSanitizer, private exerciseService: ExerciseService) {
-    exerciseService.getAll().subscribe( exercises => {
+    exerciseService.getAll().subscribe(exercises => {
       this.exercises = exercises;
       this.selectedExercise = this.exercises[0]
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+  }
 
 
   clickedExercise(exercise: Exercise) {

@@ -7,5 +7,6 @@ export class Exercise {
     public exoResponse: string,
     public exoCheck: string,
     public language: string
-  ) {}
+  ) {
+  }
 }

@@ -1,4 +1,4 @@
-<mat-sidenav-container class="container" autosize >
+<mat-sidenav-container autosize class="container">
   <mat-sidenav mode="side" opened style="min-width: 10vw; max-width: 30vw; text-align: center; padding: 2vw">
     <h2>{{exercise != undefined ? exercise.title : "Not specified"}}</h2>
     <br>
@@ -10,7 +10,10 @@
   </mat-sidenav>
   <mat-sidenav-content>
     <div #editor class="app-ace-editor"></div>
-    <button mat-raised-button class="btn" (click)="runClicked()"><mat-icon style="margin-right: 10px">play_circle_outline</mat-icon>Run</button>
+    <button (click)="runClicked()" class="btn" mat-raised-button>
+      <mat-icon style="margin-right: 10px">play_circle_outline</mat-icon>
+      Run
+    </button>
     <div #output class="output"></div>
   </mat-sidenav-content>
 </mat-sidenav-container>

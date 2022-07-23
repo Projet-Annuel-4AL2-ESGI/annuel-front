@@ -1,11 +1,11 @@
 <div class="home-center">
 
   <form class="example-form">
-    <mat-form-field class="example-full-width" appearance="fill">
+    <mat-form-field appearance="fill" class="example-full-width">
       <mat-label>Leave a comment</mat-label>
-      <input type="text" name="text-comment" [(ngModel)]="message" matInput placeholder="Ex. It makes me feel...">
+      <input [(ngModel)]="message" matInput name="text-comment" placeholder="Ex. It makes me feel..." type="text">
     </mat-form-field>
-    <button mat-fab color="primary" class="send-button" (click)="printMessage()">
+    <button (click)="printMessage()" class="send-button" color="primary" mat-fab>
       <mat-icon>send</mat-icon>
     </button>
   </form>
@@ -13,7 +13,7 @@
 
   <div *ngFor="let item of comments">
     <mat-card class="card-home-center">
-      <mat-card-header style="padding-bottom: 10px" routerLink="/user/{{item.userId}}">
+      <mat-card-header routerLink="/user/{{item.userId}}" style="padding-bottom: 10px">
         <div *ngIf="item.userImage == null" mat-card-avatar>
           <div class="header-image" mat-card-avatar></div>
         </div>
