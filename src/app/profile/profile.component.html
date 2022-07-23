@@ -22,10 +22,14 @@
         <mat-grid-list cols="4">
           <mat-grid-tile class="grid-content"></mat-grid-tile>
           <mat-grid-tile class="grid-content">
-            <h3 class="font-light">{{user?.followers}}</h3><small (click)="openDialogFollower()"> Followers</small>
+            <h3 class="font-light" style="cursor: pointer">{{user?.followers}}
+              <small (click)="openDialogFollower()"> Followers</small>
+            </h3>
           </mat-grid-tile>
           <mat-grid-tile class="grid-content">
-            <h3 class="font-light">{{user?.followings}}</h3><small (click)="openDialogFollowing()">Following</small>
+            <h3 class="font-light" style="cursor: pointer">{{user?.followings}}
+              <small (click)="openDialogFollowing()">Following</small>
+            </h3>
           </mat-grid-tile>
           <mat-grid-tile class="grid-content"></mat-grid-tile>
 
