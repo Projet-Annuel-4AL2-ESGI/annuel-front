@@ -1,0 +1,55 @@
+<mat-sidenav-container class="container" autosize>
+  <mat-sidenav mode="side" opened style="max-width: 30vw;">
+    <div *ngFor="let ex of exercises; index as i" style="margin:20px">
+      <button *ngIf="selectedExercise != undefined && selectedExercise.id == ex.id; else defaultDisplay" mat-raised-button disabled class="exercise-button">
+        {{ex.title}}
+      </button>
+      <ng-template #defaultDisplay>
+        <button mat-raised-button class="exercise-button" (click)="clickedExercise(ex)">
+          {{ex.title}}
+        </button>
+      </ng-template>
+    </div>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <div class="center">
+      <div *ngIf="selectedExercise != undefined">
+        <div style="width: 50vw; text-align: center">
+          <h1>{{selectedExercise.title}}</h1>
+
+          <br>
+          <br>
+          <br>
+
+          <p>
+            {{selectedExercise.description}}
+          </p>
+        </div>
+        <ng-template [ngIf]="currentUser == null" [ngIfElse]="userSet">
+          <a href="/auth" mat-raised-button class="go-to-button">
+            Login to continue
+          </a>
+        </ng-template>
+        <ng-template #userSet>
+          <a href="/exercise/{{selectedExercise.id}}" mat-raised-button class="go-to-button">
+            <mat-icon style="margin-right: 10px">assignment</mat-icon>Go to exercise
+          </a>
+        </ng-template>
+        <button mat-flat-button disabled class="likes-button">
+          143<mat-icon style="margin-left: 10px">favorite</mat-icon>
+        </button>
+      </div>
+      <div *ngIf="exercises != undefined && exercises.length >= 1 && selectedExercise == undefined">
+        <div style="width: 50vw; text-align: center">
+          There is no selected exercise :(
+        </div>
+      </div>
+
+      <div *ngIf="exercises == undefined || exercises.length < 1">
+        <div style="width: 50vw; text-align: center">
+          There is no exercises
+        </div>
+      </div>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

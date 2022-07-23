@@ -1,0 +1,41 @@
+.app-ace-editor {
+  display: flex;
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+}
+
+.btn {
+  background: #57a958;
+  color: white;
+  margin: 20px;
+  padding: 10px 10px 10px 20px;
+  border: 0;
+  display: flex;
+  position: absolute;
+  right: 0;
+  top: 45%;
+  border-radius: 1vw;
+  min-width: 6vw;
+  min-height: 3vw;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.output {
+  padding: 4px;
+  border: 2px solid gray;
+  min-height: 100px;
+  resize: none;
+}
+
+.container {
+  position: absolute;
+  top: 65px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #eee;
+}
