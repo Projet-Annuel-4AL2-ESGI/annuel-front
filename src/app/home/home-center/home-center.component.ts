@@ -1,12 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {DomSanitizer} from "@angular/platform-browser";
-import {Post} from "../../../models/Post";
 import {PostService} from "../../../services/PostService";
 import jwt_decode from "jwt-decode";
 import {Like} from "../../../models/Like";
 import {LikeService} from "../../../services/LikeService";
 import {PostLikes} from "../../../models/PostLikes";
-import {DialogFollowComponent} from "../../profile/dialog-follow/dialog-follow.component";
 import {CommentDialogComponent} from "./comment-dialog/comment-dialog.component";
 import {MatDialog} from "@angular/material/dialog";
 import {CommentService} from "../../../services/CommentService";
@@ -55,16 +53,15 @@ export class HomeCenterComponent implements OnInit {
   constructor(private _sanitizer: DomSanitizer, private postService: PostService, private likeService: LikeService,
               private matDialog: MatDialog, private commentService: CommentService) {
 
-    if(this.currentUser != null) {
+    if (this.currentUser != null) {
       this.decoded = jwt_decode(this.currentUser)
-      postService.getPostsLikes(this.decoded.id).subscribe( posts => {
+      postService.getPostsLikes(this.decoded.id).subscribe(posts => {
         this.posts = posts;
       })
-    }
-    else {
-      postService.getPosts().subscribe( posts => {
+    } else {
+      postService.getPosts().subscribe(posts => {
         this.posts = posts;
-      } );
+      });
     }
   }
 
@@ -77,18 +74,22 @@ export class HomeCenterComponent implements OnInit {
   public like(post: PostLikes): any {
     const like = new Like(null, this.decoded.id, post.id);
     this.likeService.like(like).subscribe(
-      value => {post.liked = true}
+      value => {
+        post.liked = true
+      }
     )
   }
 
   public dislike(post: PostLikes): any {
     const like = new Like(null, this.decoded.id, post.id);
     this.likeService.dislike(like).subscribe(
-      value => {post.liked = false}
+      value => {
+        post.liked = false
+      }
     )
   }
 
-  async openDialog(item: number){
+  async openDialog(item: number) {
     let comments: any;
     await this.commentService.getCommentsByPost(item).subscribe(value => {
       comments = value;

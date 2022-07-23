@@ -4,8 +4,8 @@ import {Injectable} from "@angular/core";
 import {Observable} from "rxjs";
 import {UserService} from "../../services/UserService";
 
-@Injectable({ providedIn: 'root' })
-export class UserResolver implements Resolve<UserProfile>{
+@Injectable({providedIn: 'root'})
+export class UserResolver implements Resolve<UserProfile> {
   constructor(public userService: UserService) {
   }
 

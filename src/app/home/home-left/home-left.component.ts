@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {UserService} from "../../../services/UserService";
 import jwt_decode from "jwt-decode";
 import {Follow} from "../../../models/Follow";
@@ -17,19 +17,20 @@ export class HomeLeftComponent implements OnInit {
   decoded: any
   follows: UserFollow[] = []
   users: any;
-  constructor(private userService: UserService, private followService: FollowService, private _sanitizer: DomSanitizer) { }
+
+  constructor(private userService: UserService, private followService: FollowService, private _sanitizer: DomSanitizer) {
+  }
 
   ngOnInit(): void {
-    if(this.currentUser != null){
+    if (this.currentUser != null) {
       this.decoded = jwt_decode(this.currentUser)
       //this.follows = this.followService.getFollowings(this.decoded.id);
       console.log("follows" + this.decoded.id);
-      this.userService.getNewFollows(this.decoded.id).subscribe(user =>{
+      this.userService.getNewFollows(this.decoded.id).subscribe(user => {
         this.users = user;
         console.log(this.users);
       });
-    }
-    else {
+    } else {
       this.userService.getAllUsers().subscribe(user => {
         this.users = user;
         console.log(this.users);
@@ -43,7 +44,9 @@ export class HomeLeftComponent implements OnInit {
   public follow(id: UserFollow) {
     const follow = new Follow(null, this.decoded.id, id.id);
     this.followService.follow(follow).subscribe(
-      value => {id.follow = true}
+      value => {
+        id.follow = true
+      }
     );
     console.log(this.follows);
   }
@@ -51,7 +54,9 @@ export class HomeLeftComponent implements OnInit {
   public unfollow(id: UserFollow) {
     const follow = new Follow(null, this.decoded.id, id.id);
     this.followService.unfollow(follow).subscribe(
-      value => {id.follow = false}
+      value => {
+        id.follow = false
+      }
     );
     console.log(this.follows);
   }

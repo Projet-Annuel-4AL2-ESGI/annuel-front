@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { HomeLeftComponent } from './home-left.component';
+import {HomeLeftComponent} from './home-left.component';
 
 describe('HomeLeftComponent', () => {
   let component: HomeLeftComponent;
@@ -8,9 +8,9 @@ describe('HomeLeftComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ HomeLeftComponent ]
+      declarations: [HomeLeftComponent]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

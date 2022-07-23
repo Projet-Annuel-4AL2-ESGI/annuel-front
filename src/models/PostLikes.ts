@@ -1,6 +1,6 @@
 export class PostLikes {
   constructor(public id: number | null,
-              public type : string,
+              public type: string,
               public userId: number | null,
               public userName: string | null,
               public title: string,

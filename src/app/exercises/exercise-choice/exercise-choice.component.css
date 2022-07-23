@@ -1,0 +1,55 @@
+.container {
+  position: absolute;
+  top: 65px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #eee;
+}
+
+button {
+  white-space: pre-wrap !important;
+}
+
+.exercise-button {
+  width: 100%;
+  text-align: left;
+}
+
+.center {
+  display: flex;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  justify-content: center;
+  align-items: center;
+}
+
+.go-to-button {
+  padding: 10px;
+  margin: 20px;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  min-height: 5vh;
+  min-width: 12.5vw;
+  border-radius: 1vw;
+  background-color: #57a958;
+  color: white;
+  font-size: 15px;
+}
+
+.likes-button {
+  margin: 20px;
+  top: 0;
+  right: 0;
+  position: absolute;
+  min-height: 5vh;
+  min-width: 5vw;
+  border-radius: 1vw;
+  background-color: lightgrey;
+  font-size: 15px;
+}

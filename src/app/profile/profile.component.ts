@@ -1,10 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {User} from "../../models/User";
 import {UserService} from "../../services/UserService";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import jwt_decode from "jwt-decode"
-import * as bcrypt from 'bcryptjs';
-import {UserProfile} from "../../models/UserProfile";
 import {DomSanitizer} from "@angular/platform-browser";
 import {UserImage} from "../../models/UserImage";
 import {MatDialog} from "@angular/material/dialog";
@@ -25,10 +22,12 @@ export class ProfileComponent implements OnInit {
 
   constructor(private _sanitizer: DomSanitizer, private userService: UserService, private _snackBar: MatSnackBar,
               private matDialog: MatDialog) {
-    if(this.currentUser != null) {
+    if (this.currentUser != null) {
       this.decoded = jwt_decode(this.currentUser)
       this.userService.findOneProfile(this.decoded.id).subscribe(
-        value => {this.user = value}
+        value => {
+          this.user = value
+        }
       )
     }
   }
@@ -36,21 +35,21 @@ export class ProfileComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onImageChanged(event: any){
+  onImageChanged(event: any) {
     this.selectedFile = event.target.files[0];
     const reader = new FileReader();
     reader.readAsDataURL(this.selectedFile);
     reader.onload = () => {
-      if(reader.result != null && typeof reader.result === "string") {
-          let userImage: UserImage = {
-            image: reader.result.split(',')[1]
+      if (reader.result != null && typeof reader.result === "string") {
+        let userImage: UserImage = {
+          image: reader.result.split(',')[1]
         }
         this.userService.updateImage(this.decoded.id, userImage).subscribe();
       }
     };
   }
 
-  async openDialogFollower(){
+  async openDialogFollower() {
     await this.userService.getFollowersList(this.decoded.id).subscribe(value => {
       this.matDialog.open(DialogFollowComponent, {
         height: '500px',
@@ -62,7 +61,7 @@ export class ProfileComponent implements OnInit {
     })
   }
 
-  async openDialogFollowing(){
+  async openDialogFollowing() {
     await this.userService.getFollowingList(this.decoded.id).subscribe(value => {
       this.matDialog.open(DialogFollowComponent, {
         height: '500px',

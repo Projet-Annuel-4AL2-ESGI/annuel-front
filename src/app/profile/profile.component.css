@@ -13,14 +13,15 @@
   height: 40px;
   background-color: #3F51B5;
 }
+
 .padding {
 
   margin-left: 400px;
   margin-right: 400px;
 }
 
-.card-img-top{
-  height:300px;
+.card-img-top {
+  height: 300px;
   width: 100%;
 }
 
@@ -56,9 +57,11 @@ img.rounded {
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
   border-radius: 100%
 }
+
 .text-center {
   text-align: center !important
 }
+
 h1,
 h2,
 h3,
@@ -70,7 +73,7 @@ h6 {
   font-weight: 400
 }
 
-.image-upload>input {
+.image-upload > input {
   display: none;
 }
 

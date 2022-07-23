@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { CommentDialogComponent } from './comment-dialog.component';
+import {CommentDialogComponent} from './comment-dialog.component';
 
 describe('CommentDialogComponent', () => {
   let component: CommentDialogComponent;
@@ -8,9 +8,9 @@ describe('CommentDialogComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CommentDialogComponent ]
+      declarations: [CommentDialogComponent]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

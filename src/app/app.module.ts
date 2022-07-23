@@ -9,14 +9,20 @@ import {FormsModule} from "@angular/forms";
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {SharingModule} from "./sharing/sharing.module";
 import {HomeCenterComponent} from './home/home-center/home-center.component';
-import { HomeLeftComponent } from './home/home-left/home-left.component';
+import {HomeLeftComponent} from './home/home-left/home-left.component';
 import {AuthGuard} from "./auth.guard";
-import { AuthComponent } from './auth/auth.component';
-import { DialogFollowComponent } from './profile/dialog-follow/dialog-follow.component';
-import { MatDialogModule } from "@angular/material/dialog";
-import { UserComponent } from './user/user.component';
-import { CommentDialogComponent } from './home/home-center/comment-dialog/comment-dialog.component';
-import { DialogFollowingComponent } from './profile/dialog-following/dialog-following.component';
+import {AuthComponent} from './auth/auth.component';
+import {ExerciseComponent} from './exercises/exercise/exercise.component';
+import {ExerciseChoiceComponent} from './exercises/exercise-choice/exercise-choice.component';
+import {DialogFollowComponent} from './profile/dialog-follow/dialog-follow.component';
+import {MatDialogModule} from "@angular/material/dialog";
+import {UserComponent} from './user/user.component';
+import {CommentDialogComponent} from './home/home-center/comment-dialog/comment-dialog.component';
+import {DialogFollowingComponent} from './profile/dialog-following/dialog-following.component';
+import {MatSidenavModule} from "@angular/material/sidenav";
+import {ExerciseCreateComponent} from './exercises/exercise-create/exercise-create.component';
+import {ExerciseResponseDialogComponent} from './exercises/exercise-response-dialog/exercise-response-dialog.component';
+import {ExerciseCreatePreviewComponent} from './exercises/exercise-create-preview/exercise-create-preview.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +36,13 @@ import { DialogFollowingComponent } from './profile/dialog-following/dialog-foll
     DialogFollowComponent,
     UserComponent,
     CommentDialogComponent,
-    DialogFollowingComponent
+    DialogFollowingComponent,
+    UserComponent,
+    ExerciseComponent,
+    ExerciseChoiceComponent,
+    ExerciseCreateComponent,
+    ExerciseResponseDialogComponent,
+    ExerciseCreatePreviewComponent
   ],
   imports: [
     BrowserModule,
@@ -38,7 +50,8 @@ import { DialogFollowingComponent } from './profile/dialog-following/dialog-foll
     FormsModule,
     BrowserAnimationsModule,
     SharingModule,
-    MatDialogModule
+    MatDialogModule,
+    MatSidenavModule
   ],
   providers: [AuthGuard],
   bootstrap: [AppComponent]

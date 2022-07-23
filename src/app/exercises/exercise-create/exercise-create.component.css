@@ -1,0 +1,44 @@
+.app-ace-editor {
+  width: 75%;
+  margin-top: 1vh;
+  margin-left: 20%;
+  height: 30vh;
+}
+
+.container {
+  position: absolute;
+  top: 65px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #eee;
+}
+
+.btn {
+  background: #57a958;
+  color: white;
+  margin: 20px;
+  padding: 10px 10px 10px 20px;
+  border: 0;
+  display: flex;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  border-radius: 1vw;
+  min-width: 6vw;
+  min-height: 3vw;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+select {
+  border: 0;
+  display: flex;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  border-radius: 1vw;
+  min-width: 6vw;
+  min-height: 3vw;
+  margin: 20px 300px 35px 20px;
+}

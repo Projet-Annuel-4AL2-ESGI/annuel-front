@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {UserService} from "../../services/UserService";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import jwt_decode from "jwt-decode";
@@ -26,7 +26,7 @@ export class AuthComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if(this.currentUser != null) {
+    if (this.currentUser != null) {
       this.decoded = jwt_decode(this.currentUser);
     }
     //console.log(this.decoded.id);
