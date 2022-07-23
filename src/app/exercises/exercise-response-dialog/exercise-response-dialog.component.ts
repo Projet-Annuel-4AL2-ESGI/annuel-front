@@ -5,6 +5,7 @@ import {PostService} from "../../../services/PostService";
 import jwt_decode from "jwt-decode";
 import {Post} from "../../../models/Post";
 import {Exercise} from "../../../models/Exercise";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-exercise-response-dialog',
@@ -19,7 +20,8 @@ export class ExerciseResponseDialogComponent implements OnInit {
   currentUser = localStorage.getItem('currentUser')
   decoded: any
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private _sanitizer: DomSanitizer, private postService: PostService) {
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private _sanitizer: DomSanitizer, private postService: PostService,
+  private router: Router) {
     this.response = this.data.data;
     this.exercise = this.data.exo;
     if(this.response == "True") {
@@ -37,7 +39,9 @@ export class ExerciseResponseDialogComponent implements OnInit {
       const post = new Post(null, "notif", this.decoded.id, null, "share",
         "I just finished "+ this.exercise.title, 0, null, null, this.exercise.id)
 
-      console.log(post);
+      this.postService.create(post).subscribe(value => {
+        this.router.navigate(['/']).then(() => window.location.reload());
+      })
     }
   }
 
