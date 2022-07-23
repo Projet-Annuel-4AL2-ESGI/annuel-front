@@ -59,8 +59,6 @@ export class ExerciseComponent implements OnInit {
 
   openDialog(data: string) {
     this.matDialog.open(ExerciseResponseDialogComponent, {
-      height: '500px',
-      width: '600px',
       data: {
         data: data,
         exo: this.exercise,
