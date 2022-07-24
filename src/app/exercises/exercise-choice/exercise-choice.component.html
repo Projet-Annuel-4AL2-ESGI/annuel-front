@@ -6,7 +6,7 @@
         {{ex.title}}
       </button>
       <ng-template #defaultDisplay>
-        <button (click)="clickedExercise(ex)" class="exercise-button" mat-raised-button>
+        <button (click)="clickedExercise(ex, i)" class="exercise-button" mat-raised-button>
           {{ex.title}}
         </button>
       </ng-template>
@@ -37,10 +37,25 @@
             Go to exercise
           </a>
         </ng-template>
-        <button class="likes-button" disabled mat-flat-button>
-          143
-          <mat-icon style="margin-left: 10px">favorite</mat-icon>
-        </button>
+        <div *ngIf="leaderboard != undefined && leaderboard.length > 0">
+          <mat-list class="likes-button" style="min-width: 10vw">
+            <mat-list-item style="width: 100%">
+              <button disabled mat-flat-button style="width: 100%">
+                🥇 {{leaderboard[0].time}}s
+              </button>
+            </mat-list-item>
+            <mat-list-item style="width: 100%">
+              <button disabled mat-flat-button style="width: 100%">
+                🥈 {{leaderboard[1].time}}s
+              </button>
+            </mat-list-item>
+            <mat-list-item style="width: 100%">
+              <button disabled mat-flat-button style="width: 100%">
+                🥉 {{leaderboard[2].time}}s
+              </button>
+            </mat-list-item>
+          </mat-list>
+        </div>
       </div>
       <div *ngIf="exercises != undefined && exercises.length >= 1 && selectedExercise == undefined">
         <div style="width: 50vw; text-align: center">

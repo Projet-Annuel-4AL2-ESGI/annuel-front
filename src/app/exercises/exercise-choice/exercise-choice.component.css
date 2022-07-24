@@ -50,6 +50,9 @@ button {
   min-height: 5vh;
   min-width: 5vw;
   border-radius: 1vw;
-  background-color: lightgrey;
   font-size: 15px;
+}
+
+.mat-list-item {
+  max-height: 37px;
 }

@@ -23,6 +23,8 @@ import {MatSidenavModule} from "@angular/material/sidenav";
 import {ExerciseCreateComponent} from './exercises/exercise-create/exercise-create.component';
 import {ExerciseResponseDialogComponent} from './exercises/exercise-response-dialog/exercise-response-dialog.component';
 import {ExerciseCreatePreviewComponent} from './exercises/exercise-create-preview/exercise-create-preview.component';
+import { HomeRightComponent } from './home/home-right/home-right.component';
+import {MatListModule} from "@angular/material/list";
 
 @NgModule({
   declarations: [
@@ -42,17 +44,19 @@ import {ExerciseCreatePreviewComponent} from './exercises/exercise-create-previe
     ExerciseChoiceComponent,
     ExerciseCreateComponent,
     ExerciseResponseDialogComponent,
-    ExerciseCreatePreviewComponent
+    ExerciseCreatePreviewComponent,
+    HomeRightComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    FormsModule,
-    BrowserAnimationsModule,
-    SharingModule,
-    MatDialogModule,
-    MatSidenavModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        FormsModule,
+        BrowserAnimationsModule,
+        SharingModule,
+        MatDialogModule,
+        MatSidenavModule,
+        MatListModule
+    ],
   providers: [AuthGuard],
   bootstrap: [AppComponent]
 })

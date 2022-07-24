@@ -32,19 +32,23 @@
 
       <mat-card-actions align="end">
         <div *ngIf="currentUser != null">
-          <button routerLink="/exercise/{{item.exoId}}" mat-button>TRY IT OUT</button>
+          <button routerLink="/exercise/{{item.exoId}}" mat-button>
+            <mat-icon [ngStyle]="{'color':'gray'}">play_circle_outline</mat-icon>
+          </button>
         </div>
         <div *ngIf="currentUser != null">
-          <button (click)="openDialog(item.id)" mat-button>COMMENTS</button>
+          <button (click)="openDialog(item.id)" mat-button>
+            <mat-icon [ngStyle]="{'color':'gray'}">chat_bubble_outline</mat-icon>
+          </button>
         </div>
         <div *ngIf="item.liked == false">
           <button (click)="like(item)" mat-button>
-            <mat-icon>favorite_border</mat-icon>
+            <mat-icon [ngStyle]="{'color':'gray'}">favorite_border</mat-icon>
           </button>
         </div>
         <div *ngIf="item.liked == true">
           <button (click)="dislike(item)" mat-button>
-            <mat-icon>favorite</mat-icon>
+            <mat-icon [ngStyle]="{'color':'red'}">favorite</mat-icon>
           </button>
         </div>
       </mat-card-actions>
