@@ -28,6 +28,7 @@ export class ExerciseComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    console.log(this.exercise);
   }
 
   ngAfterViewInit(): void {
@@ -45,7 +46,7 @@ export class ExerciseComponent implements OnInit {
 
   runClicked() {
     const aceEditor = ace.edit(this.editor.nativeElement)
-    let code = new Code(this.selectedLanguage,
+    let code = new Code(this.exercise.language,
       this.exercise.exoResponse + '\n' + aceEditor.session.getValue() + '\n' + this.exercise.exoCheck)
     this.exoService.verifyExo(code).subscribe(
       value => {

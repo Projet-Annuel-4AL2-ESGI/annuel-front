@@ -24,7 +24,8 @@ export class ExerciseResponseDialogComponent implements OnInit {
   private router: Router) {
     this.response = this.data.data;
     this.exercise = this.data.exo;
-    if(this.response == "True") {
+    console.log(this.response);
+    if(this.response == "True" || this.response.toString() == "true") {
       this.isValidated = true;
     }
   }
