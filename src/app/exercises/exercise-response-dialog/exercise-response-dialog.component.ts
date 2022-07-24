@@ -46,4 +46,7 @@ export class ExerciseResponseDialogComponent implements OnInit {
     }
   }
 
+  goToHome() {
+    this.router.navigate(['/']).then(() => window.location.reload());
+  }
 }

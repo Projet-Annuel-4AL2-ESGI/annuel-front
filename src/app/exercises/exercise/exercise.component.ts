@@ -24,6 +24,7 @@ export class ExerciseComponent implements OnInit {
               private exoService: ExerciseService) {
     this.activatedRoute.data.subscribe(value => {
       this.exercise = value['event']
+      this.selectedLanguage = this.exercise.language
     })
   }
 
@@ -32,15 +33,12 @@ export class ExerciseComponent implements OnInit {
   }
 
   ngAfterViewInit(): void {
-    const aceEditor = ace.edit(this.editor.nativeElement);
-
     ace.config.set("fontSize", "14px");
     ace.config.set('basePath', 'https://unpkg.com/ace-builds@1.4.12/src-noconflict');
 
     ace.edit(this.editor.nativeElement).setTheme('ace/theme/monokai');
 
-    aceEditor.session.setMode("ace/mode/python");
-    aceEditor.session.setValue("print ('Hello World!')");
+    this.changeLanguage()
   }
 
 
@@ -60,12 +58,35 @@ export class ExerciseComponent implements OnInit {
 
   openDialog(data: string) {
     this.matDialog.open(ExerciseResponseDialogComponent, {
-      height: '500px',
-      width: '600px',
       data: {
         data: data,
         exo: this.exercise,
       }
     });
+  }
+
+  setMode(element: ElementRef<HTMLElement>) {
+    let aceEditor = ace.edit(element.nativeElement);
+    aceEditor.session.setMode("ace/mode/python");
+    aceEditor.session.setValue("print ('Hello World!')");
+    ace.edit(element.nativeElement).setTheme('ace/theme/monokai');
+  }
+
+  changeLanguage() {
+    const aceEditor = ace.edit(this.editor.nativeElement);
+
+    if (this.selectedLanguage == 'c' || this.selectedLanguage == 'cpp') {
+      aceEditor.session.setMode("ace/mode/c_cpp");
+      aceEditor.session.setValue(`#include <stdio.h>\n int main() {\n// printf() displays the string inside quotation\nprintf(\"Hello, World!\");\nreturn 0;\n}`);
+      } else if (this.selectedLanguage == 'php') {
+      aceEditor.session.setMode("ace/mode/php");
+      aceEditor.session.setValue("<?php echo 'Hello World!'; ?> ");
+    } else if (this.selectedLanguage == 'py') {
+      aceEditor.session.setMode("ace/mode/python");
+      aceEditor.session.setValue("print ('Hello World!')");
+    } else if (this.selectedLanguage == 'js') {
+      aceEditor.session.setMode("ace/mode/javascript");
+      aceEditor.session.setValue("console.log('Hello World');");
+    }
   }
 }
