@@ -20,9 +20,9 @@ const routes: Routes = [
   {path: 'auth', component: AuthComponent},
 
   {path: 'user/:id', component: UserComponent, resolve: {event: UserResolver}},
-  {path: 'exercise/:id', component: ExerciseComponent, resolve: {event: ExerciseResolver}},
-  {path: 'exercise-create', component: ExerciseCreateComponent},
-  {path: 'exercise-create/preview', component: ExerciseCreatePreviewComponent},
+  {path: 'exercise/:id', component: ExerciseComponent, canActivate: [AuthGuard], resolve: {event: ExerciseResolver}},
+  {path: 'exercise-create', component: ExerciseCreateComponent, canActivate: [AuthGuard]},
+  {path: 'exercise-create/preview', component: ExerciseCreatePreviewComponent, canActivate: [AuthGuard]},
   {path: 'choice', component: ExerciseChoiceComponent},
   {path: '**', component: HomeComponent},
 ];
