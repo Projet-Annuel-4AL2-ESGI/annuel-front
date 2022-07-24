@@ -39,19 +39,15 @@
         </ng-template>
         <div *ngIf="leaderboard != undefined && leaderboard.length > 0">
           <mat-list class="likes-button" style="min-width: 10vw">
-            <mat-list-item style="width: 100%">
-              <button disabled mat-flat-button style="width: 100%">
-                🥇 {{leaderboard[0].time}}s
+            <mat-list-item *ngFor="let time of leaderboard.slice(0, 3); index as i" style="width: 100%">
+              <button *ngIf="i == 0" disabled mat-flat-button style="width: 100%">
+                🥇 {{time.time.toFixed(3)}}s
               </button>
-            </mat-list-item>
-            <mat-list-item style="width: 100%">
-              <button disabled mat-flat-button style="width: 100%">
-                🥈 {{leaderboard[1].time}}s
+              <button *ngIf="i == 1" disabled mat-flat-button style="width: 100%">
+                🥈 {{time.time.toFixed(3)}}s
               </button>
-            </mat-list-item>
-            <mat-list-item style="width: 100%">
-              <button disabled mat-flat-button style="width: 100%">
-                🥉 {{leaderboard[2].time}}s
+              <button *ngIf="i == 2" disabled mat-flat-button style="width: 100%">
+                🥉 {{time.time.toFixed(3)}}s
               </button>
             </mat-list-item>
           </mat-list>

@@ -33,6 +33,7 @@ export class ExerciseChoiceComponent implements OnInit {
   }
 
   updateLeaderboard() {
+    this.leaderboard = []
     this.timeService.getLeaderboardForExerciseId(this.selectedExercise!.id!).subscribe((leaderboard) => {
       this.leaderboard = leaderboard
     })
