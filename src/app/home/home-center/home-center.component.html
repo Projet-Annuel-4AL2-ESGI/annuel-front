@@ -32,6 +32,9 @@
 
       <mat-card-actions align="end">
         <div *ngIf="currentUser != null">
+          <button routerLink="/exercise/{{item.exoId}}" mat-button>TRY IT OUT</button>
+        </div>
+        <div *ngIf="currentUser != null">
           <button (click)="openDialog(item.id)" mat-button>COMMENTS</button>
         </div>
         <div *ngIf="item.liked == false">

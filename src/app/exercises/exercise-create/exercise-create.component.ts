@@ -83,11 +83,11 @@ export class ExerciseCreateComponent implements OnInit {
       aceEditor3.session.setValue("<?php echo 'Hello World!'; ?> ");
     } else if (this.selectedLanguage == 'py') {
       aceEditor1.session.setMode("ace/mode/python");
-      aceEditor1.session.setValue("print ('Hello World!')");
+      aceEditor1.session.setValue("response = 'test'");
       aceEditor2.session.setMode("ace/mode/python");
-      aceEditor2.session.setValue("print ('Hello World!')");
+      aceEditor2.session.setValue("print (response == function())");
       aceEditor3.session.setMode("ace/mode/python");
-      aceEditor3.session.setValue("print ('Hello World!')");
+      aceEditor3.session.setValue("def function():\n    return 'test'");
     } else if (this.selectedLanguage == 'js') {
       aceEditor1.session.setMode("ace/mode/javascript");
       aceEditor1.session.setValue("console.log('Hello World');");
