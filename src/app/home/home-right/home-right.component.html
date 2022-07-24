@@ -23,7 +23,7 @@
         {{users[i] != undefined ? users[i].username : "Not specified"}}
       </mat-card-title>
       <mat-card-content style="margin-top: 10px; margin-bottom: 10px">
-        <p>Exercises 📚 : {{item[1]}}  <span style="margin-left: 15px">Avg. time ⏱ : {{item[2]}}s</span></p>
+        <p>Exercises 📚 : {{item[1]}}  <span style="margin-left: 15px">Avg. time ⏱ : {{item[2].toFixed(3)}}s</span></p>
       </mat-card-content>
     </mat-card>
       <!--

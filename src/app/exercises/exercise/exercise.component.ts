@@ -6,6 +6,7 @@ import {ActivatedRoute} from "@angular/router";
 import {MatDialog} from "@angular/material/dialog";
 import {ExerciseResponseDialogComponent} from "../exercise-response-dialog/exercise-response-dialog.component";
 import {ExerciseService} from "../../../services/ExerciseService";
+import jwt_decode from "jwt-decode";
 
 @Component({
   selector: 'app-exercise',
@@ -16,6 +17,8 @@ export class ExerciseComponent implements OnInit {
 
   selectedLanguage: string = "py";
   exercise: any;
+  currentUser = localStorage.getItem('currentUser')
+  decodedUser: any;
 
   @ViewChild("editor") private editor!: ElementRef<HTMLElement>;
   @ViewChild("output") private output!: ElementRef<HTMLElement>;
@@ -26,6 +29,9 @@ export class ExerciseComponent implements OnInit {
       this.exercise = value['event']
       this.selectedLanguage = this.exercise.language
     })
+    if (this.currentUser != null) {
+      this.decodedUser = jwt_decode(this.currentUser)
+    }
   }
 
   ngOnInit(): void {
@@ -41,11 +47,14 @@ export class ExerciseComponent implements OnInit {
     this.changeLanguage()
   }
 
-
   runClicked() {
     const aceEditor = ace.edit(this.editor.nativeElement)
-    let code = new Code(this.exercise.language,
-      this.exercise.exoResponse + '\n' + aceEditor.session.getValue() + '\n' + this.exercise.exoCheck)
+    let code = new Code(
+      this.exercise.language,
+      this.exercise.exoResponse + '\n' + aceEditor.session.getValue() + '\n' + this.exercise.exoCheck,
+      this.decodedUser.id,
+      this.exercise.id
+      )
     this.exoService.verifyExo(code).subscribe(
       value => {
         this.openDialog(value);
