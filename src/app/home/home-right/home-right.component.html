@@ -4,7 +4,7 @@
   </div>
   <div *ngFor="let item of times; index as i">
     <mat-card style="margin:10px">
-      <mat-card-title style="font-size: 20px">
+      <mat-card-title style="font-size: 20px; cursor: pointer" routerLink="/user/{{users[i].id}}">
         {{i + 1}}
         <ng-template [ngIf]="i == 0 || i == 1 || i == 2" [ngIfElse]="elseIcon">
           <ng-template [ngIf]="i == 0">
