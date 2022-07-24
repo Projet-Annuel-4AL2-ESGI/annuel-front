@@ -24,6 +24,7 @@ export class ExerciseComponent implements OnInit {
               private exoService: ExerciseService) {
     this.activatedRoute.data.subscribe(value => {
       this.exercise = value['event']
+      this.selectedLanguage = this.exercise.language
     })
   }
 
