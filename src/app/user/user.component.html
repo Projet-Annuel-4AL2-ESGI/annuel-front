@@ -1,0 +1,43 @@
+<div class="padding">
+  <div class="col-md-8">
+    <div class="card"><img alt="Card image cap" class="card-img-top" src="https://i.imgur.com/bTIbBnY.jpeg">
+
+      <div class="card-body text-center">
+        <div class="pro-img">
+          <div *ngIf="user.event.image == null">
+            <img alt="user" class="rounded" mat-card-avatar
+                 src="https://material.angular.io/assets/img/examples/shiba1.jpg">
+          </div>
+          <div *ngIf="user.event.image != null" mat-card-avatar>
+            <img [src]="sanitize(user.event.image)" class="rounded" mat-card-avatar>
+          </div>
+        </div>
+        <h3 class="m-b-0">{{user?.event.username}}</h3>
+
+        <div *ngIf="isFollow.length == 0">
+          <button (click)="follow()" class="mat-button">Follow</button>
+        </div>
+        <div *ngIf="isFollow.length > 0">
+          <button (click)="unfollow()" class="mat-button">Unfollow</button>
+        </div>
+
+        <mat-grid-list cols="4">
+          <mat-grid-tile class="grid-content"></mat-grid-tile>
+          <mat-grid-tile class="grid-content">
+            <h3 class="font-light" style="cursor: pointer">{{user?.event.followers}}
+              <small (click)="openDialogFollowers()">Followers</small>
+            </h3>
+          </mat-grid-tile>
+          <mat-grid-tile class="grid-content">
+            <h3 class="font-light" style="cursor: pointer">{{user?.event.followings}}
+              <small (click)="openDialogFollowing()">Following</small>
+            </h3>
+          </mat-grid-tile>
+          <mat-grid-tile class="grid-content"></mat-grid-tile>
+
+        </mat-grid-list>
+
+      </div>
+    </div>
+  </div>
+</div>

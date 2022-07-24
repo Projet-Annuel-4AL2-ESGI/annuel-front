@@ -1,20 +1,19 @@
-
 <div class="control-panel">
   Select Language:
 
-  <select id="languages" class="languages" [(ngModel)]="selectedLanguage" (ngModelChange)="changeLanguage()">
+  <select (ngModelChange)="changeLanguage($event)" [(ngModel)]="selectedLanguage" class="languages" id="languages">
     <option *ngFor="let l of languages" [value]="l.value">
       {{l.name}}
     </option>
   </select>
 </div>
 <div
-  class="app-ace-editor"
   #editor
+  class="app-ace-editor"
 ></div>
 
 <div class="button-container">
-  <button class="btn" (click)="executeCode()"> Run </button>
+  <button (click)="executeCode()" class="btn"> Run</button>
 </div>
 
-<div class="output" #output></div>
+<div #output class="output"></div>

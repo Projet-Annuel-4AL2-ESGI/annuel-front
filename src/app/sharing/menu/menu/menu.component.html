@@ -1,0 +1,11 @@
+<p class="m-0">
+  <mat-toolbar class="menu primary_theme_color">
+    <a class="menu__title" href="/">Codogo</a>
+    <span class="example-spacer"></span>
+    <a href="/choice">Exercises</a>
+    <a href="/ide">Sandbox</a>
+    <a *ngIf='isLogedIn == null' href="/profile">Login</a>
+    <a *ngIf='isLogedIn' href="/profile">Profile</a>
+    <button (click)="logout()" *ngIf="isLogedIn != null" color="warn" mat-raised-button>Logout</button>
+  </mat-toolbar>
+</p>

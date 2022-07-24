@@ -1,0 +1,16 @@
+<mat-dialog-content>
+  <ng-template [ngIf]="isValidated == true" [ngIfElse]="returnedResponse">
+    <div style="width: 30%; margin-left: 35%; text-align: center">
+      <img src="assets/check-mark-verified.gif" width="100%" height="auto" alt="Validated CheckMark"/>
+      <h3>Congratulations you did it !</h3>
+    </div>
+    <mat-dialog-actions style="margin-top: 5vh" align="end">
+      <button (click)="sharePost()" class="btn" mat-stroked-button><mat-icon style="margin-right: 5px; font-size: 20px">rss_feed</mat-icon>Share</button>
+      <button (click)="goToHome()" class="btn" mat-stroked-button><mat-icon style="margin-right: 5px; font-size: 20px">home</mat-icon>Home</button>
+    </mat-dialog-actions>
+  </ng-template>
+  <ng-template #returnedResponse>
+    <pre>{{response}}</pre>
+  </ng-template>
+</mat-dialog-content>
+

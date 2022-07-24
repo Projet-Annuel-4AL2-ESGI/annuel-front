@@ -1,7 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import {User} from "../../models/User";
+import {Component, OnInit} from '@angular/core';
 import {UserService} from "../../services/UserService";
 import {MatSnackBar} from "@angular/material/snack-bar";
+import jwt_decode from "jwt-decode"
+import {DomSanitizer} from "@angular/platform-browser";
+import {UserImage} from "../../models/UserImage";
+import {MatDialog} from "@angular/material/dialog";
+import {DialogFollowComponent} from "./dialog-follow/dialog-follow.component";
 
 @Component({
   selector: 'app-profile',
@@ -11,51 +15,62 @@ import {MatSnackBar} from "@angular/material/snack-bar";
 export class ProfileComponent implements OnInit {
 
   currentUser = localStorage.getItem('currentUser')
+  paresdJSON: any;
+  decoded: any;
+  user: any;
+  selectedFile: any;
 
-  email: string | undefined;
-  password: string | undefined;
-  confirm_password: string | undefined;
-
-  constructor(private userService: UserService, private _snackBar: MatSnackBar) {}
-
-  ngOnInit(): void {}
-
-  register() {
-    const user = new User(this.email, this.password)
-    this.userService.createUser(user).subscribe(
-      value => {
-        localStorage.setItem('currentUser', JSON.stringify(value))
-        window.location.reload()
-      },
-      error => {
-        this.openSnackBarError("There has been an error")
-      }
-    )
-
-  }
-
-  login() {
-    const user = new User(this.email, this.password)
-    this.userService.findOneByMail(user.email).subscribe(
-      value => {
-        if (value?.email === user.email && value?.password === user.password) {
-          localStorage.setItem('currentUser', JSON.stringify(user))
-          window.location.reload()
-        } else if (value?.email !== user.email) {
-          this.openSnackBarError("Email provided is not associated with any existing user.")
-        } else {
-          this.openSnackBarError("Password is incorrect.")
+  constructor(private _sanitizer: DomSanitizer, private userService: UserService, private _snackBar: MatSnackBar,
+              private matDialog: MatDialog) {
+    if (this.currentUser != null) {
+      this.decoded = jwt_decode(this.currentUser)
+      this.userService.findOneProfile(this.decoded.id).subscribe(
+        value => {
+          this.user = value
         }
-      },
-      error => {
-        console.log(error)
-      }
-    )
+      )
+    }
   }
 
-  logout() {
-    localStorage.removeItem('currentUser')
-    window.location.reload()
+  ngOnInit(): void {
+  }
+
+  onImageChanged(event: any) {
+    this.selectedFile = event.target.files[0];
+    const reader = new FileReader();
+    reader.readAsDataURL(this.selectedFile);
+    reader.onload = () => {
+      if (reader.result != null && typeof reader.result === "string") {
+        let userImage: UserImage = {
+          image: reader.result.split(',')[1]
+        }
+        this.userService.updateImage(this.decoded.id, userImage).subscribe();
+      }
+    };
+  }
+
+  async openDialogFollower() {
+    await this.userService.getFollowersList(this.decoded.id).subscribe(value => {
+      this.matDialog.open(DialogFollowComponent, {
+        height: '500px',
+        width: '400px',
+        data: {
+          users: value,
+        }
+      });
+    })
+  }
+
+  async openDialogFollowing() {
+    await this.userService.getFollowingList(this.decoded.id).subscribe(value => {
+      this.matDialog.open(DialogFollowComponent, {
+        height: '500px',
+        width: '400px',
+        data: {
+          users: value,
+        }
+      });
+    })
   }
 
   openSnackBarError(message: string) {
@@ -63,5 +78,9 @@ export class ProfileComponent implements OnInit {
       duration: 2000,
       panelClass: ['red-snackbar']
     })
+  }
+
+  sanitize(image: string): any {
+    return this._sanitizer.bypassSecurityTrustUrl('data:image/jpeg;base64,' + image);
   }
 }

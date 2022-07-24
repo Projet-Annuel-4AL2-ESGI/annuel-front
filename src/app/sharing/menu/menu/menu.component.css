@@ -1,0 +1,17 @@
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+.menu__title {
+  font-size: 20px;
+}
+
+.menu__item {
+
+}
+
+.menu {
+  display: flex;
+  gap: 10px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}

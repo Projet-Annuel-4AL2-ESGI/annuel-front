@@ -1,61 +1,55 @@
-<mat-grid-list cols="1" rows="1" rowHeight="2:1">
+<div class="padding">
+  <div class="col-md-8">
+    <div class="card"><img alt="Card image cap" class="card-img-top" src="https://i.imgur.com/bTIbBnY.jpeg">
+
+      <div class="card-body text-center">
+
+        <div class="pro-img image-upload">
+          <div *ngIf="user.image == null">
+            <label for="file-input" mat-card-avatar>
+              <img alt="user" class="rounded" mat-card-avatar
+                   src="https://material.angular.io/assets/img/examples/shiba1.jpg">
+            </label>
+          </div>
+          <div *ngIf="user.image != null" mat-card-avatar>
+            <label for="file-input" mat-card-avatar>
+              <img [src]="sanitize(user.image)" class="rounded" mat-card-avatar>
+            </label>
+          </div>
+          <input (change)="onImageChanged($event)" id="file-input" type="file">
+        </div>
+        <h3 class="m-b-0">{{user?.username}}</h3>
+
+        <mat-grid-list cols="4">
+          <mat-grid-tile class="grid-content"></mat-grid-tile>
+          <mat-grid-tile class="grid-content">
+            <h3 class="font-light" style="cursor: pointer">{{user?.followers}}
+              <small (click)="openDialogFollower()"> Followers</small>
+            </h3>
+          </mat-grid-tile>
+          <mat-grid-tile class="grid-content">
+            <h3 class="font-light" style="cursor: pointer">{{user?.followings}}
+              <small (click)="openDialogFollowing()">Following</small>
+            </h3>
+          </mat-grid-tile>
+          <mat-grid-tile class="grid-content"></mat-grid-tile>
+
+        </mat-grid-list>
+
+      </div>
+    </div>
+  </div>
+</div>
+<!--
+<mat-grid-list cols="1" rowHeight="2:1" rows="1">
   <mat-grid-tile>
-    <mat-card *ngIf="currentUser == null" class="profile-card">
-      <mat-card-header>
-        <mat-card-title>Login/Register</mat-card-title>
-        <mat-card-subtitle>Devnet</mat-card-subtitle>
-      </mat-card-header>
-
-      <mat-card-content>
-
-        <mat-tab-group mat-stretch-tabs>
-          <mat-tab label="LOGIN">
-            <mat-form-field class="full-width" appearance="fill">
-              <mat-label>Email</mat-label>
-              <input type="email" matInput placeholder="Email" value="" [(ngModel)]="email">
-              <mat-icon matSuffix>email</mat-icon>
-            </mat-form-field>
-
-            <mat-form-field class="full-width" appearance="fill">
-              <mat-label>Password</mat-label>
-              <input type="password" matInput placeholder="Password" [(ngModel)]="password">
-              <mat-icon matSuffix>vpn_key</mat-icon>
-            </mat-form-field>
-            <button mat-button color="primary" (click)="login()">Login</button>
-          </mat-tab>
-
-          <mat-tab label="REGISTER">
-            <mat-form-field class="full-width" appearance="fill">
-              <mat-label>Email</mat-label>
-              <input type="email" matInput placeholder="Email" value="" [(ngModel)]="email">
-              <mat-icon matSuffix>email</mat-icon>
-            </mat-form-field>
-
-            <mat-form-field class="full-width" appearance="fill">
-              <mat-label>Password</mat-label>
-              <input type="password" matInput placeholder="Password" [(ngModel)]="password">
-              <mat-icon matSuffix>vpn_key</mat-icon>
-            </mat-form-field>
-
-            <mat-form-field class="full-width" appearance="fill">
-              <mat-label>Confirm password</mat-label>
-              <input type="password" matInput placeholder="Confirm password" [(ngModel)]="confirm_password">
-              <mat-icon matSuffix>vpn_key</mat-icon>
-            </mat-form-field>
-            <button mat-button color="primary" (click)="register()">Register</button>
-          </mat-tab>
-        </mat-tab-group>
-
-
-      </mat-card-content>
-
-    </mat-card>
     <div *ngIf="currentUser != null">
       <p>Connected !</p>
       <br>
-      <button mat-raised-button color="warn" (click)="logout()">Logout</button>
+      <button (click)="logout()" color="warn" mat-raised-button>Logout</button>
     </div>
   </mat-grid-tile>
 </mat-grid-list>
+-->
 
 

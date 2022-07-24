@@ -1,0 +1,24 @@
+<div class="home-left">
+  <div style="text-align: center; margin: 10px">
+    <h2>Recommendations</h2>
+  </div>
+  <div *ngFor="let item of users">
+    <mat-card class="card-home-left">
+      <mat-card-header routerLink="/user/{{item.id}}">
+        <div *ngIf="item.image == null" mat-card-avatar>
+          <div class="header-image" mat-card-avatar></div>
+        </div>
+        <div *ngIf="item.image != null" mat-card-avatar>
+          <img [src]="sanitize(item.image)" mat-card-avatar>
+        </div>
+        <mat-card-title style="margin-top: 10px">{{item.username}}</mat-card-title>
+      </mat-card-header>
+      <div *ngIf="item.follow == false">
+        <button (click)="follow(item)" id="follow" mat-stroked-button>Follow</button>
+      </div>
+      <div *ngIf="item.follow == true">
+        <button (click)="unfollow(item)" id="unfollow" mat-stroked-button>Unfollow</button>
+      </div>
+    </mat-card>
+  </div>
+</div>

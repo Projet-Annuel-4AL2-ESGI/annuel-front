@@ -1,0 +1,50 @@
+<mat-sidenav-container autosize class="container">
+  <mat-sidenav mode="side" opened style="min-width: 10vw; max-width: 30vw; padding: 2vw">
+    <h3>Exercise Creation</h3>
+    <br>
+    <br>
+    <p>
+      To create your exercise, you must first enter the code base in the first block, then the response in the second
+      block.
+
+      If you want to test your code the third block can be used to enter the expected response from the player and test
+      the result.
+    </p>
+    <mat-form-field appearance="fill" style="width: 100%; margin-top: 6.5vh">
+      <mat-label>Title</mat-label>
+      <input [(ngModel)]="title" matInput>
+    </mat-form-field>
+    <mat-form-field appearance="fill" style="width: 100%; margin-top: 2.5vh">
+      <mat-label>Guidelines</mat-label>
+      <textarea #autosize="cdkTextareaAutosize"
+                [(ngModel)]="rules"
+                cdkAutosizeMaxRows="20"
+                cdkAutosizeMinRows="20"
+                cdkTextareaAutosize
+                matInput></textarea>
+    </mat-form-field>
+    <select (ngModelChange)="changeLanguage($event)" [(ngModel)]="selectedLanguage" class="languages" id="languages">
+      <option *ngFor="let l of languages" [value]="l.value">
+        {{l.name}}
+      </option>
+    </select>
+    <button (click)="runClicked()" class="btn" mat-raised-button>
+      <mat-icon style="margin-right: 10px">play_circle_outline</mat-icon>
+      Run
+    </button>
+    <button (click)="saveClicked()" class="btn" mat-raised-button style="margin-right: 150px">
+      <mat-icon style="margin-right: 10px">save</mat-icon>
+      Save
+    </button>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <p style="display: flex; position: absolute; top: 15%; width: 15%; margin: 0 2.5%"><b>Code base</b></p>
+    <div #editor1 class="app-ace-editor"></div>
+
+    <p style="display: flex; position: absolute; top: 48%; width: 15%; margin: 0 2.5%"><b>Response</b></p>
+    <div #editor2 class="app-ace-editor"></div>
+
+    <p style="display: flex; position: absolute; top: 81%; width: 15%; margin: 0 2.5%"><b>Tests</b></p>
+    <div #editor3 class="app-ace-editor"></div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
