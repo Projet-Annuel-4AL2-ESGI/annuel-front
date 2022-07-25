@@ -3,6 +3,7 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Exercise} from "../models/Exercise";
 import {Code} from "../models/Code";
+import {environment} from "../environments/environment";
 
 @Injectable({
   providedIn: 'root'
@@ -14,15 +15,15 @@ export class ExerciseService {
   }
 
   public create(exercise: Exercise): Observable<Exercise> {
-    return this.httpClient.post("http://127.0.0.1:3000/exo/", exercise) as Observable<Exercise>
+    return this.httpClient.post(environment.apiUrl+"/exo/", exercise) as Observable<Exercise>
   }
 
   public getAll(): Observable<[Exercise]> {
-    return this.httpClient.get(`http://127.0.0.1:3000/exo/`) as Observable<[Exercise]>
+    return this.httpClient.get(environment.apiUrl+`/exo/`) as Observable<[Exercise]>
   }
 
   public findOne(id: number): Observable<Exercise> {
-    return this.httpClient.get(`http://127.0.0.1:3000/exo/` + id) as Observable<Exercise>
+    return this.httpClient.get(environment.apiUrl+`/exo/` + id) as Observable<Exercise>
   }
 
   public verifyExo(code: Code): Observable<string> {
@@ -34,9 +35,9 @@ export class ExerciseService {
         .set('content-type', 'application/json')
         .set("Authorization", "Bearer " + jwtJSON["access_token"]);
 
-      return this.httpClient.post(`http://127.0.0.1:3000/exo/validate`, JSON.parse(JSON.stringify(code)),
+      return this.httpClient.post(environment.apiUrl+`/exo/validate`, JSON.parse(JSON.stringify(code)),
         {"headers": headers})  as Observable<string>
     }
-    return this.httpClient.post(`http://127.0.0.1:3000/exo/validate`, JSON.parse(JSON.stringify(code))) as Observable<string>;
+    return this.httpClient.post(environment.apiUrl+`/exo/validate`, JSON.parse(JSON.stringify(code))) as Observable<string>;
   }
 }

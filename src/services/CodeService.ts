@@ -3,6 +3,7 @@ import {Observable} from 'rxjs';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Router} from '@angular/router';
 import {Code} from "../models/Code";
+import {environment} from "../environments/environment";
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,7 @@ export class CodeService {
   }
 
   public getAllCodes() {
-    this.httpClient.get(`http://127.0.0.1:3000/code`).subscribe(
+    this.httpClient.get(environment.apiUrl+`/code`).subscribe(
       value => console.log(value),
       error => console.log(error.error.text)
     )
@@ -30,9 +31,9 @@ export class CodeService {
         .set('content-type', 'application/json')
         .set("Authorization", "Bearer " + jwtJSON["access_token"]);
 
-      return this.httpClient.post('http://127.0.0.1:3000/code/exec', JSON.parse(JSON.stringify(code)),
+      return this.httpClient.post(environment.apiUrl+'/code/exec', JSON.parse(JSON.stringify(code)),
         {"headers": headers}) as Observable<string>
     }
-    return this.httpClient.post('http://127.0.0.1:3000/code/exec', JSON.parse(JSON.stringify(code))) as Observable<string>
+    return this.httpClient.post(environment.apiUrl+'/code/exec', JSON.parse(JSON.stringify(code))) as Observable<string>
   }
 }
