@@ -3,6 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {Router} from "@angular/router";
 import {Observable} from "rxjs";
 import {Like} from "../models/Like";
+import {environment} from "../environments/environment";
 
 @Injectable({
   providedIn: 'root'
@@ -12,11 +13,11 @@ export class LikeService {
   }
 
   public like(like: Like): Observable<Like> {
-    return this.httpClient.post(`http://127.0.0.1:3000/likes`, JSON.parse(JSON.stringify(like))) as Observable<Like>;
+    return this.httpClient.post(environment.apiUrl+`/likes`, JSON.parse(JSON.stringify(like))) as Observable<Like>;
   }
 
   public dislike(like: Like): Observable<string> {
-    return this.httpClient.delete(`http://127.0.0.1:3000/likes`,
+    return this.httpClient.delete(environment.apiUrl+`/likes`,
       {"body": JSON.parse(JSON.stringify(like))}) as Observable<string>;
   }
 }

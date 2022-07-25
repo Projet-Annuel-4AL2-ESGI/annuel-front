@@ -3,6 +3,7 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Comment} from "../models/Comment"
 import {CommentGet} from "../models/CommentGet";
+import {environment} from "../environments/environment";
 
 @Injectable({
   providedIn: 'root'
@@ -25,14 +26,14 @@ export class CommentService {
         .set('content-type', 'application/json')
         .set("Authorization", "Bearer " + jwtJSON["access_token"]);
       return this.httpClient
-        .post("http://localhost:3000/comment", JSON.parse(JSON.stringify(comment)),
+        .post(environment.apiUrl+"/comment", JSON.parse(JSON.stringify(comment)),
           {"headers": headers}) as Observable<CommentGet>;
     }
     return this.httpClient
-      .post("http://localhost:3000/comment", JSON.parse(JSON.stringify(comment))) as Observable<CommentGet>;
+      .post(environment.apiUrl+"/comment", JSON.parse(JSON.stringify(comment))) as Observable<CommentGet>;
   }
 
   public getCommentsByPost(id: number): Observable<CommentGet[]> {
-    return this.httpClient.get("http://localhost:3000/comment/post/" + id) as Observable<CommentGet[]>;
+    return this.httpClient.get(environment.apiUrl+"/comment/post/" + id) as Observable<CommentGet[]>;
   }
 }
