@@ -9,7 +9,7 @@
           <div class="header-image" mat-card-avatar></div>
         </div>
         <div *ngIf="item.image != null" mat-card-avatar>
-          <img [src]="sanitize(item.image)" mat-card-avatar>
+          <img [src]="sanitize(item.image)" mat-card-avatar alt="user image">
         </div>
         <mat-card-title style="margin-top: 10px">{{item.username}}</mat-card-title>
       </mat-card-header>

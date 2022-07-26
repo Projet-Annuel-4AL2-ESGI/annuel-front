@@ -45,7 +45,7 @@ export class HomeCenterComponent implements OnInit {
   public like(post: PostLikes): any {
     const like = new Like(null, this.decoded.id, post.id);
     this.likeService.like(like).subscribe(
-      value => {
+      () => {
         post.liked = true
       }
     )
@@ -54,7 +54,7 @@ export class HomeCenterComponent implements OnInit {
   public dislike(post: PostLikes): any {
     const like = new Like(null, this.decoded.id, post.id);
     this.likeService.dislike(like).subscribe(
-      value => {
+      () => {
         post.liked = false
       }
     )

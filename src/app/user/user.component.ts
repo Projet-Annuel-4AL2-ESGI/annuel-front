@@ -27,6 +27,14 @@ export class UserComponent implements OnInit {
     this.activatedRoute.data.subscribe(
       value => {
         this.user = value
+        if (this.currentUser != null) {
+          this.decoded = jwt_decode(this.currentUser)
+          this.followService.getOneFollowing(this.decoded.id, this.user.event.id).subscribe(value => {
+            console.log(value);
+            this.isFollow = value;
+            console.log(this.isFollow);
+          })
+        }
       }
     )
 
@@ -34,17 +42,6 @@ export class UserComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if (this.currentUser != null) {
-      this.decoded = jwt_decode(this.currentUser)
-      this.followService.getOneFollowing(this.decoded.id, this.user.event.id).subscribe(value => {
-        console.log(value);
-        this.isFollow = value;
-        console.log(this.isFollow);
-      })
-    }
-  }
-
-  ngAfterViewInit(): void {
   }
 
   async openDialogFollowers() {
@@ -92,7 +89,7 @@ export class UserComponent implements OnInit {
       following: this.user.event.id
     }
     if (this.currentUser != null) {
-      this.followService.unfollow(follow).subscribe(value => {
+      this.followService.unfollow(follow).subscribe(() => {
         this.isFollow.pop();
       })
     }

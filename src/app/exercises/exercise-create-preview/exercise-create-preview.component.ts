@@ -31,10 +31,6 @@ export class ExerciseCreatePreviewComponent implements OnInit {
       "", 0, null, null, null)
   }
 
-  //TODO: username undefined
-  //TODO: userId ok ??
-  //TODO: image ok ??
-
   ngOnInit(): void {
   }
 
@@ -54,8 +50,6 @@ export class ExerciseCreatePreviewComponent implements OnInit {
         }
       )
     })
-    //this.postService.create(this.post!)
-    //this.exerciseService.create(this.exercise!) //TODO: Update post and exercise services with create method, maybe check sent data ??
   }
 
   onImageChanged(event: any) {

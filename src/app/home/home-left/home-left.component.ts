@@ -45,7 +45,7 @@ export class HomeLeftComponent implements OnInit {
   public follow(id: UserFollow) {
     const follow = new Follow(null, this.decoded.id, id.id);
     this.followService.follow(follow).subscribe(
-      value => {
+      () => {
         id.follow = true
       }
     );
@@ -55,7 +55,7 @@ export class HomeLeftComponent implements OnInit {
   public unfollow(id: UserFollow) {
     const follow = new Follow(null, this.decoded.id, id.id);
     this.followService.unfollow(follow).subscribe(
-      value => {
+      () => {
         id.follow = false
       }
     );

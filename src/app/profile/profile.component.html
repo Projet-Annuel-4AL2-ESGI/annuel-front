@@ -3,7 +3,6 @@
     <div class="card"><img alt="Card image cap" class="card-img-top" src="https://i.imgur.com/bTIbBnY.jpeg">
 
       <div class="card-body text-center">
-
         <div class="pro-img image-upload">
           <div *ngIf="user.image == null">
             <label for="file-input" mat-card-avatar>
@@ -13,7 +12,7 @@
           </div>
           <div *ngIf="user.image != null" mat-card-avatar>
             <label for="file-input" mat-card-avatar>
-              <img [src]="sanitize(user.image)" class="rounded" mat-card-avatar>
+              <img [src]="sanitize(user.image)" class="rounded" mat-card-avatar alt="user image">
             </label>
           </div>
           <input (change)="onImageChanged($event)" id="file-input" type="file">

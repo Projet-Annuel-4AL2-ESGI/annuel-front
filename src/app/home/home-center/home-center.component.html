@@ -13,7 +13,7 @@
             <div class="header-image" mat-card-avatar></div>
           </div>
           <div *ngIf="item.userImage != null" mat-card-avatar>
-            <img [src]="sanitize(item.userImage)" mat-card-avatar>
+            <img [src]="sanitize(item.userImage)" mat-card-avatar alt="user image">
           </div>
           <mat-card-title>{{item.userName}}</mat-card-title>
           <mat-card-subtitle>DONE</mat-card-subtitle>
