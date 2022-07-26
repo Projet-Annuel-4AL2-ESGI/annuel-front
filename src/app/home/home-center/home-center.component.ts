@@ -8,6 +8,7 @@ import {PostLikes} from "../../../models/PostLikes";
 import {CommentDialogComponent} from "./comment-dialog/comment-dialog.component";
 import {MatDialog} from "@angular/material/dialog";
 import {CommentService} from "../../../services/CommentService";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-home-center',
@@ -21,7 +22,7 @@ export class HomeCenterComponent implements OnInit {
   posts: any;
 
   constructor(private _sanitizer: DomSanitizer, private postService: PostService, private likeService: LikeService,
-              private matDialog: MatDialog, private commentService: CommentService) {
+              private matDialog: MatDialog, private commentService: CommentService, private router: Router) {
 
     if (this.currentUser != null) {
       this.decoded = jwt_decode(this.currentUser)
@@ -79,4 +80,7 @@ export class HomeCenterComponent implements OnInit {
     return this._sanitizer.bypassSecurityTrustUrl('data:image/jpeg;base64,' + image);
   }
 
+  goToUser(id: number) {
+    this.router.navigate(['/user/' + id]).then(() => window.location.reload());
+  }
 }

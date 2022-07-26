@@ -18,7 +18,8 @@ export class HomeRightComponent implements OnInit {
   times : [number, number, number][] = []
   users: UserProfile[] = []
 
-  constructor(private timeService: TimeService, private userService: UserService, private _sanitizer: DomSanitizer) {}
+  constructor(private timeService: TimeService, private userService: UserService, private _sanitizer: DomSanitizer, private router: Router) {
+  }
 
   ngOnInit(): void {
     this.timeService.getGlobalLeaderboard().subscribe( (value) => {
@@ -36,5 +37,9 @@ export class HomeRightComponent implements OnInit {
 
   sanitize(image: string): any {
     return this._sanitizer.bypassSecurityTrustUrl('data:image/jpeg;base64,' + image);
+  }
+
+  goToUser(id: number) {
+    this.router.navigate(['/user/' + id]).then(() => window.location.reload());
   }
 }

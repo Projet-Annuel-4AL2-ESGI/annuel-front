@@ -8,7 +8,7 @@
         </mat-card-header>
       </div>
       <div *ngIf="item.type == 'notif'">
-        <mat-card-header routerLink="/user/{{item.userId}}" style="padding-bottom: 10px">
+        <mat-card-header (click)="goToUser(item.userId)" style="padding-bottom: 10px">
           <div *ngIf="item.userImage == null" mat-card-avatar>
             <div class="header-image" mat-card-avatar></div>
           </div>

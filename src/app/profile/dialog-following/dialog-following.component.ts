@@ -2,6 +2,7 @@ import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA} from "@angular/material/dialog";
 import {DomSanitizer} from "@angular/platform-browser";
 import {UserFollow} from "../../../models/UserFollow";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-dialog-following',
@@ -14,7 +15,7 @@ export class DialogFollowingComponent implements OnInit {
   decoded: any
   userList: UserFollow[] = [];
 
-  constructor(@Inject(MAT_DIALOG_DATA) public users: any, public _sanitizer: DomSanitizer) {
+  constructor(@Inject(MAT_DIALOG_DATA) public users: any, public _sanitizer: DomSanitizer, private router: Router) {
     this.userList = this.users.users;
   }
 
@@ -25,4 +26,7 @@ export class DialogFollowingComponent implements OnInit {
     return this._sanitizer.bypassSecurityTrustUrl('data:image/jpeg;base64,' + image);
   }
 
+  goToUser(id: number) {
+    this.router.navigate(['/user/' + id]).then(() => window.location.reload());
+  }
 }

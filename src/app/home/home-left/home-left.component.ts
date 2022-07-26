@@ -5,6 +5,7 @@ import {Follow} from "../../../models/Follow";
 import {FollowService} from "../../../services/FollowService";
 import {UserFollow} from "../../../models/UserFollow";
 import {DomSanitizer} from "@angular/platform-browser";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-home-left',
@@ -18,7 +19,7 @@ export class HomeLeftComponent implements OnInit {
   follows: UserFollow[] = []
   users: any;
 
-  constructor(private userService: UserService, private followService: FollowService, private _sanitizer: DomSanitizer) {
+  constructor(private userService: UserService, private followService: FollowService, private _sanitizer: DomSanitizer, private router: Router) {
   }
 
   ngOnInit(): void {
@@ -65,4 +66,7 @@ export class HomeLeftComponent implements OnInit {
     return this._sanitizer.bypassSecurityTrustUrl('data:image/jpeg;base64,' + image);
   }
 
+  goToUser(id: number) {
+    this.router.navigate(['/user/' + id]).then(() => window.location.reload());
+  }
 }

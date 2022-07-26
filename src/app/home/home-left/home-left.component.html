@@ -4,7 +4,7 @@
   </div>
   <div *ngFor="let item of users">
     <mat-card class="card-home-left">
-      <mat-card-header routerLink="/user/{{item.id}}">
+      <mat-card-header (click)="goToUser(item.id);">
         <div *ngIf="item.image == null" mat-card-avatar>
           <div class="header-image" mat-card-avatar></div>
         </div>
