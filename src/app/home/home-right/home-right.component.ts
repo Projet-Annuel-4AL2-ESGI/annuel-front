@@ -20,16 +20,15 @@ export class HomeRightComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.timeService.getGlobalLeaderboard().subscribe( (value) => {
+    this.timeService.getGlobalLeaderboard().subscribe((value) => {
       this.times = value;
-      this.times.forEach((value) => {
-        this.userService.findOneProfile(value[0]).subscribe((value) => {
-          if (value != undefined) {
-            this.users.push(value);
-            console.log(value.image);
+      for (let i = 0; i < this.times.length; i++) {
+        this.userService.findOneProfile(this.times[i][0]).subscribe((profile) => {
+          if (profile != undefined) {
+            this.users[i] = profile;
           }
         })
-      });
+      }
     })
   }
 
