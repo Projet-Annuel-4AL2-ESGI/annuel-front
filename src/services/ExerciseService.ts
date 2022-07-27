@@ -15,7 +15,17 @@ export class ExerciseService {
   }
 
   public create(exercise: Exercise): Observable<Exercise> {
-    return this.httpClient.post(environment.apiUrl+"/exo/", exercise) as Observable<Exercise>
+    if (this.currentUser != null) {
+
+      const jwtJSON = JSON.parse(this.currentUser)
+
+      const headers = new HttpHeaders()
+        .set('content-type', 'application/json')
+        .set("Authorization", "Bearer " + jwtJSON["access_token"]);
+
+      return this.httpClient.post(environment.apiUrl + "/exo/", exercise, {"headers": headers}) as Observable<Exercise>
+    }
+    return this.httpClient.post(environment.apiUrl + "/exo/", exercise) as Observable<Exercise>
   }
 
   public getAll(): Observable<[Exercise]> {
