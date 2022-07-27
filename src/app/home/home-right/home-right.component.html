@@ -2,34 +2,36 @@
   <div style="text-align: center; margin: 20px">
     <h2>Leaderboard</h2>
   </div>
-  <div *ngIf="times.length == 0 || times == undefined || times == null"
+  <div *ngIf="times.length == 0"
        style="position: absolute; top: 35%; right: 8.5%">
     <mat-spinner color="accent" strokeWidth="4" diameter="50"></mat-spinner>
   </div>
-  <div *ngFor="let item of times; index as i">
-    <mat-card style="margin:10px">
-      <mat-card-title style="font-size: 20px; cursor: pointer" (click)="goToUser(users[i].id)">
-        {{i + 1}}
-        <ng-template [ngIf]="i == 0 || i == 1 || i == 2" [ngIfElse]="elseIcon">
-          <ng-template [ngIf]="i == 0">
-            🥇
+  <div *ngIf="times.length > 0">
+    <div *ngFor="let item of times; index as i">
+      <mat-card style="margin:10px">
+        <mat-card-title style="font-size: 20px; cursor: pointer" (click)="goToUser(users[i].id)">
+          {{i + 1}}
+          <ng-template [ngIf]="i == 0 || i == 1 || i == 2" [ngIfElse]="elseIcon">
+            <ng-template [ngIf]="i == 0">
+              🥇
+            </ng-template>
+            <ng-template [ngIf]="i == 1">
+              🥈
+            </ng-template>
+            <ng-template [ngIf]="i == 2">
+              🥉
+            </ng-template>
           </ng-template>
-          <ng-template [ngIf]="i == 1">
-            🥈
+          <ng-template #elseIcon>
+            🎖
           </ng-template>
-          <ng-template [ngIf]="i == 2">
-            🥉
-          </ng-template>
-        </ng-template>
-        <ng-template #elseIcon>
-          🎖
-        </ng-template>
-        {{users[i] != undefined ? users[i].username : "Not specified"}}
-      </mat-card-title>
-      <mat-card-content style="margin-top: 10px; margin-bottom: 10px">
-        <p>Exercises 📚 : {{item[1]}}  <span style="margin-left: 15px">Avg. time ⏱ : {{item[2].toFixed(3)}}s</span></p>
-      </mat-card-content>
-    </mat-card>
+          {{users[i] != undefined ? users[i].username : "Not specified"}}
+        </mat-card-title>
+        <mat-card-content style="margin-top: 10px; margin-bottom: 10px">
+          <p>Exercises 📚 : {{item[1]}}  <span style="margin-left: 15px">Avg. time ⏱ : {{item[2].toFixed(3)}}s</span>
+          </p>
+        </mat-card-content>
+      </mat-card>
       <!--
     <mat-card class="card-home">
       <mat-card-header>
@@ -46,6 +48,7 @@
         <p>{{item[1]}} {{item[2]}}</p>
       </div>
     </mat-card>-->
+    </div>
   </div>
 </div>
 <!--

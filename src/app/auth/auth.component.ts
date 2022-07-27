@@ -15,12 +15,12 @@ export class AuthComponent implements OnInit {
   currentUser = localStorage.getItem('currentUser')
   decoded: any;
 
-  email: string | undefined;
-  password: string | undefined;
-  registrationEmail: string | undefined;
-  registrationPassword: string | undefined;
-  username: string | undefined;
-  confirm_password: string | undefined;
+  email: string = "";
+  password: string = "";
+  registrationEmail: string = "";
+  registrationPassword: string = "";
+  username: string = "";
+  confirm_password: string = "";
 
   constructor(private userService: UserService, private _snackBar: MatSnackBar, private router: Router) {
   }
@@ -29,17 +29,19 @@ export class AuthComponent implements OnInit {
     if (this.currentUser != null) {
       this.decoded = jwt_decode(this.currentUser);
     }
-    //console.log(this.decoded.id);
   }
 
   register() {
+    if (this.registrationEmail == "" || this.username == "" || this.registrationPassword == "")
+      return
     const user = new User(this.registrationEmail, this.username, this.registrationPassword)
     this.userService.createUser(user).subscribe(
-      async value => {
-        //localStorage.setItem('currentUser', JSON.stringify(value))
-        await this.router.navigate(['/']).then(() => window.location.reload());
+      async () => {
+        this.email = this.registrationEmail;
+        this.password = this.registrationPassword;
+        this.login()
       },
-      error => {
+      () => {
         this.openSnackBarError("There has been an error")
       }
     )
@@ -47,6 +49,8 @@ export class AuthComponent implements OnInit {
   }
 
   login() {
+    if (this.email == "" || this.password == "")
+      return
     const user = new User(this.email, undefined, this.password)
     if (user == undefined || user.password == undefined) {
       this.openSnackBarError("Provide a password.");
@@ -59,7 +63,7 @@ export class AuthComponent implements OnInit {
           return;
         }
         localStorage.setItem('currentUser', JSON.stringify(value))
-        await this.router.navigate(['/profile']).then(() => window.location.reload());
+        await this.router.navigate(['/']).then(() => window.location.reload());
       },
       error => {
         console.log(error)

@@ -17,7 +17,7 @@ export class HomeLeftComponent implements OnInit {
   currentUser = localStorage.getItem('currentUser')
   decoded: any
   follows: UserFollow[] = []
-  users: any;
+  users: any = [];
 
   constructor(private userService: UserService, private followService: FollowService, private _sanitizer: DomSanitizer, private router: Router) {
   }

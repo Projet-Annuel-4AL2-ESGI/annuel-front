@@ -19,7 +19,7 @@ export class HomeCenterComponent implements OnInit {
 
   currentUser = localStorage.getItem('currentUser')
   decoded: any
-  posts: any;
+  posts: any = [];
 
   constructor(private _sanitizer: DomSanitizer, private postService: PostService, private likeService: LikeService,
               private matDialog: MatDialog, private commentService: CommentService, private router: Router) {
