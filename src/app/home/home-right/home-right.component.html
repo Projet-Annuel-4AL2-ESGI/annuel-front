@@ -2,6 +2,9 @@
   <div style="text-align: center; margin: 20px">
     <h2>Leaderboard</h2>
   </div>
+  <div *ngIf="times.length == 0" style="position: absolute; top: 35%; right: 8.5%">
+    <mat-spinner color="accent" strokeWidth="4" diameter="50"></mat-spinner>
+  </div>
   <div *ngFor="let item of times; index as i">
     <mat-card style="margin:10px">
       <mat-card-title style="font-size: 20px; cursor: pointer" (click)="goToUser(users[i].id)">
