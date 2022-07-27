@@ -2,7 +2,8 @@
   <div style="text-align: center; margin: 10px">
     <h2>Recommendations</h2>
   </div>
-  <div *ngIf="users.length == 0" style="position: absolute; top: 35%; left: 8.5%">
+  <div *ngIf="users.length == 0 || users == undefined || users == null"
+       style="position: absolute; top: 35%; left: 8.5%">
     <mat-spinner color="accent" strokeWidth="4" diameter="50"></mat-spinner>
   </div>
   <div *ngFor="let item of users">

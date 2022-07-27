@@ -33,7 +33,7 @@ export class HomeLeftComponent implements OnInit {
       });
     } else {
       this.userService.getAllUsers().subscribe(user => {
-        this.users = user;
+        this.users = user.sort(() => Math.random() - Math.random()).slice(0, 10);
         console.log(this.users);
       });
     }

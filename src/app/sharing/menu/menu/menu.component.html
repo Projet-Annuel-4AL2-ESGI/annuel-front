@@ -2,6 +2,7 @@
   <mat-toolbar class="menu primary_theme_color">
     <a class="menu__title" href="/">Codogo</a>
     <span class="example-spacer"></span>
+    <a *ngIf="isLogedIn" href="/exercise-create">Create an exercise</a>
     <a href="/choice">Exercises</a>
     <a href="/ide">Sandbox</a>
     <a *ngIf='isLogedIn == null' href="/profile">Login</a>

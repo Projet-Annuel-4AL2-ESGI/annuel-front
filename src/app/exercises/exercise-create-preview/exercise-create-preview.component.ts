@@ -20,6 +20,7 @@ export class ExerciseCreatePreviewComponent implements OnInit {
   decodedUser: any;
   description: string = "";
   selectedFile: any;
+  isLoading = false;
 
   constructor(private _sanitizer: DomSanitizer, private postService: PostService, private exerciseService: ExerciseService,
               private router: Router) {
@@ -39,6 +40,7 @@ export class ExerciseCreatePreviewComponent implements OnInit {
   }
 
   saveClicked() {
+    this.isLoading = true
     this.post!.description = this.description
     this.exercise!.description = this.description
     console.log(this.exercise)

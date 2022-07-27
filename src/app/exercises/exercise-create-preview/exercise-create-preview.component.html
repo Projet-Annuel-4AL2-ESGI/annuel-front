@@ -16,10 +16,13 @@
                 matInput></textarea>
     </mat-form-field>
     <input (change)="onImageChanged($event)" id="file-input" style="width: 50%; margin-left: 25%" type="file">
-    <button (click)="saveClicked()" class="btn" mat-raised-button>
+    <button *ngIf="!isLoading" (click)="saveClicked()" class="btn" mat-raised-button>
       <mat-icon style="margin-right: 10px">save</mat-icon>
       Save
     </button>
+    <div *ngIf="isLoading">
+      <mat-spinner color="accent" class="spinner" strokeWidth="3" diameter="30"></mat-spinner>
+    </div>
   </mat-sidenav>
   <mat-sidenav-content class="center">
     <mat-card class="card-home-center">
@@ -40,11 +43,18 @@
 
       <mat-card-actions align="end">
         <div>
-          <button mat-button>COMMENTS</button>
+          <button mat-button>
+            <mat-icon [ngStyle]="{'color':'gray'}">play_circle_outline</mat-icon>
+          </button>
         </div>
         <div>
           <button mat-button>
-            <mat-icon>favorite_border</mat-icon>
+            <mat-icon [ngStyle]="{'color':'gray'}">chat_bubble_outline</mat-icon>
+          </button>
+        </div>
+        <div>
+          <button mat-button>
+            <mat-icon [ngStyle]="{'color':'gray'}">favorite_border</mat-icon>
           </button>
         </div>
       </mat-card-actions>

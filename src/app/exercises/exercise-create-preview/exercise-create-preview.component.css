@@ -52,3 +52,15 @@
   font-size: 13px;
   cursor: pointer;
 }
+
+.spinner {
+  color: white;
+  margin: 35px 55px;
+  display: flex;
+  padding: 10px;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  font-size: 13px;
+  border-radius: 1vw;
+}
